@@ -1,0 +1,81 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15
+    container_name: mytriv_postgres
+    environment:
+      POSTGRES_DB: mytriv_erp
+      POSTGRES_USER: odoo
+      POSTGRES_PASSWORD: odoo_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - mytriv_network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U odoo -d mytriv_erp"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Odoo Backend
+  odoo:
+    build: ./backend
+    container_name: mytriv_odoo
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      HOST: postgres
+      USER: odoo
+      PASSWORD: odoo_password
+      DATABASE: mytriv_erp
+    volumes:
+      - odoo_data:/var/lib/odoo
+      - ./backend/addons:/mnt/extra-addons
+    ports:
+      - "8069:8069"
+    networks:
+      - mytriv_network
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+
+  # React Frontend (Next.js)
+  react:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: mytriv_react
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:8069/api
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+      - /app/.next
+    networks:
+      - mytriv_network
+    restart: unless-stopped
+    develop:
+      watch:
+        - action: sync
+          path: ./frontend/src
+          target: /app/src
+        - action: rebuild
+          path: package.json
+
+networks:
+  mytriv_network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+    driver: local
+  odoo_data:
+    driver: local

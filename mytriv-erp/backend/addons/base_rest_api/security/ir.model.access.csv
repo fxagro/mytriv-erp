@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_base_rest_api_public,Base REST API Public Access,model_ir_model,base.group_public,1,0,0,0

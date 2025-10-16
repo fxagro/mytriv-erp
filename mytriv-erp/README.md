@@ -70,11 +70,10 @@
 - [Prerequisites](#prerequisites)
 - [Development](#development)
 - [API Usage](#api-usage)
-- [Deployment](#deployment)
 - [CI/CD Pipeline](#cicd-pipeline)
 - [Project Structure](#project-structure)
-- [Contributing](#contributing)
 - [Documentation](#documentation)
+- [Contributing](#contributing)
 - [License](#license)
 
 ## 🚀 Quick Start
@@ -462,10 +461,16 @@ We welcome contributions! Please see our [Contributing Guide](docs/CONTRIBUTING.
 
 ## 📚 Documentation
 
-- **[Architecture Guide](docs/ARCHITECTURE.md)**: System design and architecture
-- **[Module Development](docs/MODULE_GUIDE.md)**: Creating custom Odoo modules
-- **[API Documentation](docs/API.md)**: Complete API reference
-- **[Deployment Guide](docs/DEPLOYMENT.md)**: Production deployment instructions
+### 📖 **Core Documentation**
+- **[🏗️ Architecture Guide](docs/ARCHITECTURE.md)**: System design and architecture overview
+- **[🔧 Module Development Guide](docs/MODULE_GUIDE.md)**: Creating custom Odoo modules and extensions
+- **[🔌 API Documentation](docs/API_DOCUMENTATION.md)**: Complete REST API reference and examples
+- **[🚢 Deployment Guide](docs/DEPLOYMENT.md)**: Production deployment and DevOps instructions
+
+### 🤝 **Community & Support**
+- **[📝 Contributing Guide](docs/CONTRIBUTING.md)**: How to contribute to MyTriv ERP
+- **[🐛 Issues](https://github.com/fxagro/mytriv-erp/issues)**: Report bugs and request features
+- **[💬 Discussions](https://github.com/fxagro/mytriv-erp/discussions)**: Join community conversations
 
 ## 🛠️ Tech Stack
 

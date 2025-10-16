@@ -1,0 +1,25 @@
+# Custom Python dependencies for MyTriv ERP
+# These will be installed in addition to Odoo's default dependencies
+
+# Web framework for API endpoints
+werkzeug>=2.0.0
+
+# JSON handling
+simplejson>=3.17.0
+
+# HTTP requests (if needed for external APIs)
+requests>=2.25.0
+
+# Date/time utilities
+python-dateutil>=2.8.0
+
+# XML processing
+lxml>=4.6.0
+
+# Database connection pooling (optional)
+psycopg2-binary>=2.9.0
+
+# Development dependencies (optional)
+# pytest>=6.0.0
+# black>=21.0.0
+# flake8>=3.9.0
