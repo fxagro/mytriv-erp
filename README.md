@@ -562,7 +562,7 @@ We welcome contributions from developers of all skill levels!
 ### 💬 **Community**
 - 🐛 **[Report Issues](https://github.com/fxagro/mytriv-erp/issues)**
 - 💭 **[Discussions](https://github.com/fxagro/mytriv-erp/discussions)**
-- 📧 **Email:** [fxagro@gmail.com](mailto:agro@mytriv.com)
+- 📧 **Email:** [your-email@mytriv.com](mailto:contact@mytriv.com)
 
 ---
 
