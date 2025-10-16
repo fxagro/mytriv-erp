@@ -1,0 +1,312 @@
+---
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main, develop]
+# Note: Pull request triggers are intentionally disabled as per requirements
+
+env:
+  PYTHON_VERSION: '3.10'
+  NODE_VERSION: '20'
+  POSTGRES_VERSION: '15'
+
+jobs:
+  # ===============================
+  # CONTINUOUS INTEGRATION (CI)
+  # ===============================
+
+  # Backend Setup and Validation
+  backend-setup:
+    name: Backend Setup & Validation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Cache Python dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('backend/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Install Python dependencies
+        run: |
+          cd backend
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Validate Python syntax
+        run: |
+          echo "🔍 Validating Python syntax in backend..."
+          python -m py_compile backend/addons/*/models/*.py \
+            backend/addons/*/*.py || {
+            echo "❌ Python syntax validation failed"
+            exit 1
+          }
+          echo "✅ Python syntax validation passed"
+
+      - name: Check Odoo configuration
+        run: |
+          echo "🔍 Validating Odoo configuration..."
+          if [ -f "backend/odoo.conf" ]; then
+            echo "✅ Odoo configuration file found"
+          else
+            echo "⚠️ Odoo configuration file not found (expected for production)"
+          fi
+
+  # Frontend Setup and Build
+  frontend-setup:
+    name: Frontend Setup & Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install frontend dependencies
+        run: |
+          cd frontend
+          npm ci
+
+      - name: Lint frontend code
+        run: |
+          cd frontend
+          echo "🔍 Running ESLint..."
+          npm run lint || {
+            echo "❌ Frontend linting failed"
+            exit 1
+          }
+          echo "✅ Frontend linting passed"
+
+      - name: Type check frontend
+        run: |
+          cd frontend
+          echo "🔍 Running TypeScript type checking..."
+          npm run type-check || {
+            echo "❌ TypeScript type checking failed"
+            exit 1
+          }
+          echo "✅ TypeScript type checking passed"
+
+      - name: Build frontend
+        run: |
+          cd frontend
+          echo "🏗️ Building Next.js application..."
+          npm run build || {
+            echo "❌ Frontend build failed"
+            exit 1
+          }
+          echo "✅ Frontend build completed successfully"
+
+  # Docker Compose Validation
+  docker-validation:
+    name: Docker Compose Validation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Validate Docker Compose configuration
+        run: |
+          echo "🔍 Validating Docker Compose configuration..."
+          docker compose config -q || {
+            echo "❌ Docker Compose configuration is invalid"
+            exit 1
+          }
+          echo "✅ Docker Compose configuration is valid"
+
+      - name: Build Docker images (no cache)
+        run: |
+          echo "🏗️ Building Docker images..."
+          docker compose build --no-cache || {
+            echo "❌ Docker image build failed"
+            exit 1
+          }
+          echo "✅ All Docker images built successfully"
+
+      - name: Clean up built images
+        run: |
+          echo "🧹 Cleaning up Docker images..."
+          docker compose down --rmi all -v || true
+          echo "✅ Cleanup completed"
+
+  # Integration Tests (Placeholder)
+  integration-tests:
+    name: Integration Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Set up Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Placeholder - Odoo + API Integration Tests
+        run: |
+          echo "🔧 Integration Tests Placeholder"
+          echo "=================================="
+          echo ""
+          echo "📋 TODO: Implement integration tests for:"
+          echo "   • Odoo backend API endpoints"
+          echo "   • Frontend API client integration"
+          echo "   • Database connectivity tests"
+          echo "   • Cross-service communication"
+          echo "   • Authentication flow validation"
+          echo ""
+          echo "✅ Placeholder step completed (no actual tests run)"
+          echo ""
+          echo "💡 To implement tests:"
+          echo "   1. Add test files in backend/tests/"
+          echo "   2. Add test files in frontend/src/__tests__/"
+          echo "   3. Configure test databases"
+          echo "   4. Set up test environment variables"
+
+  # ===============================
+  # CONTINUOUS DEPLOYMENT (CD) - COMMENTED TEMPLATE
+  # ===============================
+
+  # CONTABO VPS DEPLOYMENT (COMMENTED OUT)
+  # Uncomment and configure the following job to enable deployment to Contabo VPS
+
+  # deploy-contabo:
+  #   name: Deploy to Contabo VPS
+  #   runs-on: ubuntu-latest
+  #   needs: [backend-setup, frontend-setup, docker-validation, integration-tests]
+  #   if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+
+  #   environment:
+  #     name: production
+  #     url: https://your-domain.com
+
+  #   steps:
+  #     - name: Checkout repository
+  #       uses: actions/checkout@v4
+
+  #     - name: Deploy to Contabo VPS
+  #       uses: appleboy/ssh-action@v1.1.0
+  #       with:
+  #         host: ${{ secrets.CONTABO_HOST }}
+  #         username: ${{ secrets.CONTABO_USER }}
+  #         key: ${{ secrets.CONTABO_SSH_KEY }}
+  #         port: 22
+  #         script: |
+  #           echo "🚀 Starting deployment to Contabo VPS..."
+
+  #           # Navigate to deployment directory
+  #           cd /opt/mytriv_erp || {
+  #             echo "❌ Deployment directory not found. Creating..."
+  #             sudo mkdir -p /opt/mytriv_erp
+  #             cd /opt/mytriv_erp
+  #           }
+
+  #           # Backup current deployment (optional)
+  #           if [ -d "current" ]; then
+  #             echo "💾 Creating backup of current deployment..."
+  #             sudo cp -r current backup_$(date +%Y%m%d_%H%M%S) || true
+  #           fi
+
+  #           # Pull latest code
+  #           echo "📥 Pulling latest code from repository..."
+  #           if [ -d ".git" ]; then
+  #             git pull origin main || {
+  #               echo "❌ Failed to pull latest code"
+  #               exit 1
+  #             }
+  #           else
+  #             echo "❌ Git repository not initialized"
+  #             exit 1
+  #           fi
+
+  #           # Stop existing containers
+  #           echo "⏹️ Stopping existing containers..."
+  #           sudo docker compose down || true
+
+  #           # Pull latest images and start containers
+  #           echo "🐳 Pulling and starting containers..."
+  #           sudo docker compose pull || true
+  #           sudo docker compose up -d --build || {
+  #             echo "❌ Failed to start containers"
+  #             exit 1
+  #           }
+
+  #           # Wait for services to be healthy
+  #           echo "🏥 Waiting for services to be healthy..."
+  #           sleep 30
+
+  #           # Health check
+  #           echo "🔍 Performing health checks..."
+  #           if curl -f http://localhost:3000 >/dev/null 2>&1; then
+  #             echo "✅ Frontend is responding"
+  #           else
+  #             echo "❌ Frontend health check failed"
+  #             exit 1
+  #           fi
+
+  #           if curl -f http://localhost:8069 >/dev/null 2>&1; then
+  #             echo "✅ Backend (Odoo) is responding"
+  #           else
+  #             echo "❌ Backend health check failed"
+  #             exit 1
+  #           fi
+
+  #           echo "🎉 Deployment completed successfully!"
+  #           echo "🌐 Frontend: http://localhost:3000"
+  #           echo "🔧 Backend: http://localhost:8069"
+
+  # ===============================
+  # NOTIFICATION AND SUMMARY
+  # ===============================
+
+  # Pipeline Summary
+  pipeline-summary:
+    name: Pipeline Summary
+    runs-on: ubuntu-latest
+    needs: [backend-setup, frontend-setup, docker-validation, integration-tests]
+    if: always()
+    steps:
+      - name: Generate pipeline summary
+        run: |
+          echo "📊 MyTriv ERP CI/CD Pipeline Summary"
+          echo "======================================"
+          echo ""
+          echo "🔧 **CI Status:**"
+          echo "   • Backend Setup: ${{ needs.backend-setup.result }}"
+          echo "   • Frontend Setup: ${{ needs.frontend-setup.result }}"
+          echo "   • Docker Validation: ${{ needs.docker-validation.result }}"
+          echo "   • Integration Tests: ${{ needs.integration-tests.result }}"
+          echo ""
+          echo "📋 **Environment:**"
+          echo "   • Python: ${{ env.PYTHON_VERSION }}"
+          echo "   • Node.js: ${{ env.NODE_VERSION }}"
+          echo "   • PostgreSQL: ${{ env.POSTGRES_VERSION }}"
+          echo ""
+          echo "🚀 **Next Steps:**"
+          echo "   • Uncomment CD section for production deployment"
+          echo "   • Configure deployment secrets in repository settings"
+          echo "   • Set up monitoring and alerting"
+          echo ""
+          echo "✅ Pipeline completed!"

@@ -2,7 +2,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/Setup-One--Command-blue?style=for-the-badge&logo=gnubash" alt="One-Command Setup">
-  <img src="https://github.com/fxagro/mytriv-erp/actions/workflows/ci.yml/badge.svg" alt="CI Pipeline">
+  <img src="https://github.com/fxagro/mytriv-erp/actions/workflows/ci-cd.yml/badge.svg" alt="CI/CD Pipeline">
   <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License">
 </p>
 

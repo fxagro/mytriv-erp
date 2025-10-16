@@ -1,0 +1,8 @@
+FROM odoo:17.0
+
+USER root
+RUN apt-get update && apt-get install -y git nano python3-pip
+COPY ./config/odoo.conf /etc/odoo/odoo.conf
+COPY ./addons /mnt/extra-addons
+RUN chown -R odoo:odoo /mnt/extra-addons
+USER odoo
