@@ -1,0 +1,30 @@
+# Logo Placeholder - MyTriv ERP Cloud
+
+This file serves as a placeholder for the MyTriv ERP Cloud logo.
+
+## Logo Specifications
+
+**Design Requirements:**
+- Background: White
+- Primary Text: "MyTriv ERP" in Blue (#2563EB)
+- Secondary Text: "Cloud" in Gray (#6B7280)
+- Font Style: Modern, clean sans-serif (Inter or similar)
+- Layout: Horizontal, "MyTriv ERP" on top line, "Cloud" below or integrated
+- Dimensions: 200x80px minimum, scalable for web use
+
+**Color Palette:**
+- Primary Blue: #2563EB (Tailwind Blue-600)
+- Text Gray: #6B7280 (Tailwind Gray-500)
+- Background: #FFFFFF (Pure White)
+
+**Usage:**
+Replace this placeholder file with the actual logo file:
+`docs/assets/logo-placeholder.png` → `docs/assets/mytriv-erp-cloud-logo.png`
+
+**Creation Tools:**
+- Canva
+- Figma
+- Adobe Illustrator
+- Or use online logo generators with the specifications above
+
+**File Format:** PNG with transparent background preferred for web use.

@@ -7,8 +7,20 @@
 </p>
 
 <p align="center">
+  <!-- Odoo Version Badges -->
+  <img src="https://img.shields.io/badge/Odoo-11-blue" alt="Odoo 11">
+  <img src="https://img.shields.io/badge/Odoo-12-blue" alt="Odoo 12">
+  <img src="https://img.shields.io/badge/Odoo-13-blue" alt="Odoo 13">
+  <img src="https://img.shields.io/badge/Odoo-14-blue" alt="Odoo 14">
+  <img src="https://img.shields.io/badge/Odoo-15-blue" alt="Odoo 15">
+  <img src="https://img.shields.io/badge/Odoo-16-blue" alt="Odoo 16">
+  <img src="https://img.shields.io/badge/Odoo-17-blue" alt="Odoo 17">
+  <img src="https://img.shields.io/badge/Odoo-18-green" alt="Odoo 18">
+  <img src="https://img.shields.io/badge/Odoo-19-green" alt="Odoo 19">
+</p>
+
+<p align="center">
   <img src="https://img.shields.io/badge/Node.js-%3E%3D18.0.0-brightgreen.svg" alt="Node.js">
-  <img src="https://img.shields.io/badge/Odoo-17.0-blue.svg" alt="Odoo">
   <img src="https://img.shields.io/badge/PostgreSQL-15.0-336791.svg" alt="PostgreSQL">
   <img src="https://img.shields.io/badge/Docker-Ready-2496ED.svg" alt="Docker">
   <img src="https://img.shields.io/badge/TypeScript-Ready-3178C6.svg" alt="TypeScript">
@@ -16,9 +28,9 @@
 </p>
 
 <p align="center">
-  <strong>Modern Full-Stack ERP Solution</strong><br>
-  Combining <strong>Odoo 17</strong> backend power with <strong>Next.js 15</strong> React frontend.<br>
-  Designed for <em>multi-industry</em> use cases with enterprise-grade scalability.
+  <strong>Multi-Version Full-Stack ERP Solution</strong><br>
+  Compatible with <strong>Odoo 11-19</strong> backend with <strong>Next.js 15</strong> React frontend.<br>
+  Designed for <em>enterprise</em> environments with automated CI/CD and Dockerized multi-version support.
 </p>
 
 <div align="center">
@@ -26,6 +38,7 @@
 [📖 Documentation](#-documentation) •
 [🚀 Quick Start](#-quick-start) •
 [🔧 Features](#-features) •
+[🏗️ Multi-Version Support](#-multi-version-support) •
 [🤝 Contributing](docs/CONTRIBUTING.md) •
 [📚 Module Guide](docs/MODULE_GUIDE.md)
 
@@ -40,20 +53,22 @@
 - 📱 **Responsive Design** with mobile-first approach
 - 🌙 **Dark Mode** support out of the box
 
-### 🔧 **Robust Backend**
-- 🏢 **Odoo 17 Community** - World's most popular open-source ERP
+### 🔧 **Multi-Version Backend**
+- 🏢 **Odoo 11-19 Community** - Full compatibility across 9 Odoo versions
 - 🚀 **Custom REST API** module for seamless integration
-- 🐍 **Python 3.11** with modern Odoo framework
+- 🐍 **Python 3.8-3.12** with version-specific optimizations
 - 📊 **PostgreSQL 15** for enterprise-grade data storage
 - 🔒 **Enterprise Security** with role-based access control
+- 🔄 **Version Migration Tools** for seamless upgrades
 
 ### 🏗️ **Production Ready**
-- 🐳 **Docker & Docker Compose** for easy deployment
+- 🐳 **Docker & Docker Compose** for multi-version deployment
 - 🤖 **Automated Setup Script** for one-command installation
-- ⚙️ **GitHub Actions** CI/CD pipeline
-- 🚨 **Health Checks** and monitoring
+- ⚙️ **GitHub Actions** CI/CD pipeline with version matrix testing
+- 🚨 **Health Checks** and monitoring across all versions
 - 📈 **Scalable Architecture** for enterprise growth
 - 🔄 **Hot Reload** development environment
+- 🎯 **Multi-Instance Deployment** for testing and staging
 
 ### 🔌 **API Integration**
 - 📡 **RESTful API** endpoints for all Odoo models
@@ -61,6 +76,316 @@
 - 📤 **Real-time Updates** with automatic UI refresh
 - 🛡️ **Error Handling** with user-friendly messages
 - 📋 **CRUD Operations** for complete data management
+
+## 🏗️ Multi-Version Support
+
+MyTriv ERP supports **Odoo 11 through Odoo 19**, providing seamless compatibility across 9 major Odoo versions.
+
+### ✅ **Supported Versions**
+- **Odoo 11.0** - Legacy support with extended maintenance
+- **Odoo 12.0** - Enhanced performance and stability
+- **Odoo 13.0** - Modern UI/UX improvements
+- **Odoo 14.0** - Advanced reporting capabilities
+- **Odoo 15.0** - Improved mobile responsiveness
+- **Odoo 16.0** - Enhanced developer experience
+- **Odoo 17.0** - Latest stable release (default)
+- **Odoo 18.0** - Beta support with early features
+- **Odoo 19.0** - Beta support with cutting-edge capabilities
+
+### 🚀 **Version Selection**
+
+#### Quick Start with Default Version (Odoo 17)
+```bash
+# Uses Odoo 17.0 by default
+curl -fsSL https://raw.githubusercontent.com/fxagro/mytriv-erp/main/setup_mytriv_erp.sh | bash
+```
+
+#### Specify Odoo Version
+```bash
+# Set ODOO_VERSION environment variable
+export ODOO_VERSION=16.0
+curl -fsSL https://raw.githubusercontent.com/fxagro/mytriv-erp/main/setup_mytriv_erp.sh | bash
+```
+
+#### Docker Build with Version Argument
+```bash
+# Build specific Odoo version
+docker build --build-arg ODOO_VERSION=15.0 -t mytriv-erp:v15 .
+
+# Run multiple versions simultaneously
+docker-compose -f docker-compose.multi-version.yml up -d
+```
+
+### 🏭 **Multi-Instance Deployment**
+
+Run multiple Odoo versions simultaneously for testing and migration:
+
+```yaml
+# docker-compose.multi-version.yml
+services:
+  odoo11:
+    build:
+      context: .
+      args:
+        ODOO_VERSION: 11.0
+    ports:
+      - "8011:8069"
+
+  odoo17:
+    build:
+      context: .
+      args:
+        ODOO_VERSION: 17.0
+    ports:
+      - "8017:8069"
+
+  odoo19:
+    build:
+      context: .
+      args:
+        ODOO_VERSION: 19.0
+    ports:
+      - "8019:8069"
+```
+
+### 🔄 **Version Migration Strategy**
+
+#### Database Migration
+```bash
+# 1. Backup current database
+docker-compose exec postgres pg_dump -U odoo mytriv_erp > backup_v17.sql
+
+# 2. Deploy new version
+export ODOO_VERSION=18.0
+docker-compose up -d --build
+
+# 3. Test migration (dry run)
+docker-compose exec odoo odoo-bin -u all --test
+
+# 4. Apply migration
+docker-compose exec odoo odoo-bin -u all
+```
+
+#### Module Compatibility
+- **Core modules** compatible across all versions
+- **Version-specific features** automatically enabled/disabled
+- **Migration scripts** handle data transformations
+- **Testing matrix** ensures compatibility
+
+### 🧪 **Testing Matrix**
+
+Every commit triggers automated testing across all supported versions:
+
+```yaml
+# .github/workflows/ci-cd.yml
+strategy:
+  matrix:
+    odoo_version: [11.0, 12.0, 13.0, 14.0, 15.0, 16.0, 17.0, 18.0, 19.0]
+```
+
+**Test Coverage:**
+- ✅ **Unit Tests** - Model and API functionality
+- ✅ **Integration Tests** - Cross-module compatibility
+- ✅ **Migration Tests** - Version upgrade scenarios
+- ✅ **Performance Tests** - Load testing across versions
+
+### 📊 **Version Comparison**
+
+| Version | Release Year | Python | PostgreSQL | Key Features |
+|---------|-------------|--------|------------|--------------|
+| **Odoo 11** | 2017 | 3.6+ | 9.6+ | Modern UI, IoT |
+| **Odoo 12** | 2018 | 3.6+ | 10.0+ | Performance, Studio |
+| **Odoo 13** | 2019 | 3.7+ | 11.0+ | Mobile, Reporting |
+| **Odoo 14** | 2020 | 3.8+ | 12.0+ | Website, E-commerce |
+| **Odoo 15** | 2021 | 3.8+ | 13.0+ | Accounting, Documents |
+| **Odoo 16** | 2022 | 3.9+ | 14.0+ | Knowledge, Manufacturing |
+| **Odoo 17** | 2023 | 3.10+ | 15.0+ | Dashboard, AI |
+| **Odoo 18** | 2024 | 3.11+ | 15.0+ | Advanced Analytics |
+| **Odoo 19** | 2025 | 3.12+ | 16.0+ | Next-gen Features |
+
+## 🏛️ Architecture Overview
+
+### **Multi-Version Architecture Diagram**
+
+```mermaid
+graph TB
+    subgraph "🌐 User Layer"
+        U[👤 Users]
+        M[📱 Mobile Apps]
+        T[🖥️ Third-party Systems]
+    end
+
+    subgraph "🚀 MyTriv ERP Platform"
+        subgraph "⚛️ Frontend Layer"
+            F[Next.js 15 React App]
+            S[shadcn/ui Components]
+            A[API Client]
+        end
+
+        subgraph "🔧 Backend Layer"
+            subgraph "Odoo Version Matrix"
+                O11[Odoo 11.0]
+                O12[Odoo 12.0]
+                O13[Odoo 13.0]
+                O14[Odoo 14.0]
+                O15[Odoo 15.0]
+                O16[Odoo 16.0]
+                O17[Odoo 17.0<br/>Default]
+                O18[Odoo 18.0]
+                O19[Odoo 19.0]
+            end
+
+            subgraph "Core Services"
+                R[base_rest_api Module]
+                C[Custom Controllers]
+                M[Odoo Models]
+                V[Views & Templates]
+            end
+        end
+
+        subgraph "💾 Data Layer"
+            P[(PostgreSQL 15)]
+            RC[(Redis Cache)]
+        end
+    end
+
+    subgraph "🏭 Infrastructure"
+        D[Docker Engine]
+        DC[Docker Compose]
+        GH[GHA CI/CD]
+        NG[Nginx Proxy]
+    end
+
+    %% Connections
+    U --> F
+    M --> F
+    T --> A
+
+    F --> R
+    S --> F
+    A --> R
+
+    R --> O11
+    R --> O12
+    R --> O13
+    R --> O14
+    R --> O15
+    R --> O16
+    R --> O17
+    R --> O18
+    R --> O19
+
+    O11 --> P
+    O12 --> P
+    O13 --> P
+    O14 --> P
+    O15 --> P
+    O16 --> P
+    O17 --> P
+    O18 --> P
+    O19 --> P
+
+    O11 --> RC
+    O12 --> RC
+    O13 --> RC
+    O14 --> RC
+    O15 --> RC
+    O16 --> RC
+    O17 --> RC
+    O18 --> RC
+    O19 --> RC
+
+    C --> M
+    M --> V
+
+    D --> DC
+    DC --> GH
+    NG --> F
+    NG --> R
+
+    %% Styling
+    classDef default fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef odoo fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef frontend fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef data fill:#e8f5e8,stroke:#1b5e20,stroke-width:2px
+    classDef infra fill:#fce4ec,stroke:#880e4f,stroke-width:2px
+
+    class O11,O12,O13,O14,O15,O16,O17,O18,O19 odoo
+    class F,S,A frontend
+    class P,RC data
+    class D,DC,GH,NG infra
+```
+
+### **Deployment Architecture**
+
+```mermaid
+graph LR
+    subgraph "Development Environment"
+        subgraph "Local Development"
+            LD[💻 Local Machine]
+            DV[Docker Compose]
+            DBL[(Local PostgreSQL)]
+        end
+
+        subgraph "Version Testing"
+            VT1[Odoo 11 Test]
+            VT2[Odoo 17 Test]
+            VT3[Odoo 19 Test]
+        end
+    end
+
+    subgraph "CI/CD Pipeline"
+        GH[GHA Workflow]
+        TB[Test Build]
+        SB[Staging Build]
+        PB[Production Build]
+    end
+
+    subgraph "Production Environment"
+        subgraph "Multi-Version Production"
+            PV1[Odoo 11 Prod]
+            PV2[Odoo 17 Prod]
+            PV3[Odoo 19 Prod]
+        end
+
+        LB[Load Balancer]
+        DBP[(Production DB)]
+        CDN[CDN]
+    end
+
+    %% Development Flow
+    LD --> DV
+    DV --> DBL
+    DV --> VT1
+    DV --> VT2
+    DV --> VT3
+
+    %% CI/CD Flow
+    GH --> TB
+    TB --> SB
+    SB --> PB
+
+    %% Production Flow
+    VT1 --> PV1
+    VT2 --> PV2
+    VT3 --> PV3
+
+    PV1 --> LB
+    PV2 --> LB
+    PV3 --> LB
+
+    LB --> DBP
+    LB --> CDN
+
+    %% Styling
+    classDef dev fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    classDef cicd fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    classDef prod fill:#e8f5e8,stroke:#388e3c,stroke-width:2px
+
+    class LD,DV,DBL,VT1,VT2,VT3 dev
+    class GH,TB,SB,PB cicd
+    class PV1,PV2,PV3,LB,DBP,CDN prod
+```
 
 ## 📋 Table of Contents
 
@@ -105,10 +430,19 @@ docker compose up -d
 | Service | URL | Description |
 |---------|-----|-------------|
 | **Frontend** | http://localhost:3000 | React/Next.js application |
-| **Backend** | http://localhost:8069 | Odoo 17 ERP system |
+| **Backend** | http://localhost:8069 | Odoo ERP system (v17 default) |
 | **Employee API** | http://localhost:8069/api/v1/employees | REST API endpoint |
 | **Generic API** | http://localhost:8069/api | All Odoo models API |
 | **Database** | localhost:5432 | PostgreSQL admin |
+
+### 🔄 **Multi-Version Access**
+| Version | Backend URL | Description |
+|---------|-------------|-------------|
+| **Odoo 11** | http://localhost:8011 | Legacy version instance |
+| **Odoo 12** | http://localhost:8012 | Previous version instance |
+| **Odoo 17** | http://localhost:8069 | Default version (recommended) |
+| **Odoo 18** | http://localhost:8018 | Latest stable version |
+| **Odoo 19** | http://localhost:8019 | Beta version instance |
 
 ---
 
@@ -466,6 +800,8 @@ We welcome contributions! Please see our [Contributing Guide](docs/CONTRIBUTING.
 - **[🔧 Module Development Guide](docs/MODULE_GUIDE.md)**: Creating custom Odoo modules and extensions
 - **[🔌 API Documentation](docs/API_DOCUMENTATION.md)**: Complete REST API reference and examples
 - **[🚢 Deployment Guide](docs/DEPLOYMENT.md)**: Production deployment and DevOps instructions
+- **[⚙️ Multi-Version Setup Guide](docs/SETUP.md)**: Docker setup for different Odoo versions
+- **[🔄 Multi-Version Guide](docs/MULTI_VERSION_GUIDE.md)**: Version matrix testing and migration strategies
 
 ### 🤝 **Community & Support**
 - **[📝 Contributing Guide](docs/CONTRIBUTING.md)**: How to contribute to MyTriv ERP
