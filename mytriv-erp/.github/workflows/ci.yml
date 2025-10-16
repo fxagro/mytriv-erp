@@ -1,0 +1,278 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  # Lint and validate configuration files
+  lint:
+    name: Lint & Validate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install yamllint
+        run: |
+          python -m pip install --upgrade pip
+          pip install yamllint
+
+      - name: Validate Docker Compose
+        run: |
+          echo "🔍 Validating Docker Compose configuration..."
+          docker compose config -q
+          if [ $? -eq 0 ]; then
+            echo "✅ Docker Compose configuration is valid"
+          else
+            echo "❌ Docker Compose configuration has errors"
+            exit 1
+          fi
+
+      - name: Validate YAML files
+        run: |
+          echo "🔍 Validating YAML syntax..."
+          yamllint . || {
+            echo "❌ YAML validation failed"
+            exit 1
+          }
+          echo "✅ All YAML files are valid"
+
+      - name: Check for required files
+        run: |
+          echo "🔍 Checking for required project files..."
+          required_files=(".env.example" "docker-compose.yml" "README.md")
+          for file in "${required_files[@]}"; do
+            if [ ! -f "$file" ]; then
+              echo "❌ Required file $file is missing"
+              exit 1
+            fi
+          done
+          echo "✅ All required files are present"
+
+  # Build and test Docker containers
+  build:
+    name: Build & Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker images
+        run: |
+          echo "🏗️ Building Docker containers..."
+          docker compose build --no-cache
+          if [ $? -eq 0 ]; then
+            echo "✅ All containers built successfully"
+          else
+            echo "❌ Container build failed"
+            exit 1
+          fi
+
+      - name: Test container startup
+        run: |
+          echo "🚀 Testing container startup..."
+          docker compose up -d --wait-timeout 60
+          sleep 10
+
+          # Check if all expected containers are running
+          RUNNING_CONTAINERS=$(docker compose ps -q | wc -l)
+          if [ "$RUNNING_CONTAINERS" -ge 3 ]; then
+            echo "✅ All $RUNNING_CONTAINERS containers are running"
+          else
+            echo "❌ Expected at least 3 containers, found $RUNNING_CONTAINERS"
+            docker compose ps
+            exit 1
+          fi
+
+      - name: Test service health
+        run: |
+          echo "🏥 Testing service health..."
+
+          # Test if services are responding
+          if curl -f http://localhost:3000 >/dev/null 2>&1; then
+            echo "✅ Frontend is responding"
+          else
+            echo "⚠️ Frontend not accessible (may need more time to start)"
+          fi
+
+          if curl -f http://localhost:8069 >/dev/null 2>&1; then
+            echo "✅ Backend (Odoo) is responding"
+          else
+            echo "⚠️ Backend not accessible (may need more time to start)"
+          fi
+
+      - name: Clean up test containers
+        run: |
+          echo "🧹 Cleaning up test containers..."
+          docker compose down -v
+          echo "✅ Test environment cleaned up"
+
+  # Security scanning with Trivy
+  security-check:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+          ignore-unfixed: true
+          severity: 'HIGH,CRITICAL'
+
+      - name: Upload Trivy scan results
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: 'trivy-results.sarif'
+
+      - name: Generate security report
+        run: |
+          echo "🔒 Generating security report..."
+          echo "Security scan completed. Check the SARIF file for detailed results."
+          echo "High and Critical vulnerabilities will be reported in the Security tab."
+
+  # Environment and configuration check
+  env-check:
+    name: Environment Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Validate environment configuration
+        run: |
+          echo "🔍 Validating environment configuration..."
+
+          # Check if .env.example exists and has content
+          if [ ! -f ".env.example" ]; then
+            echo "❌ .env.example file is missing"
+            exit 1
+          fi
+
+          if [ ! -s ".env.example" ]; then
+            echo "❌ .env.example file is empty"
+            exit 1
+          fi
+
+          echo "✅ .env.example exists and has content"
+
+      - name: Check Docker configuration
+        run: |
+          echo "🔍 Validating Docker configuration..."
+
+          # Check if docker-compose.yml exists and has valid YAML
+          if [ ! -f "docker-compose.yml" ]; then
+            echo "❌ docker-compose.yml file is missing"
+            exit 1
+          fi
+
+          # Validate docker-compose.yml syntax
+          if docker compose config -q >/dev/null 2>&1; then
+            echo "✅ docker-compose.yml syntax is valid"
+          else
+            echo "❌ docker-compose.yml has syntax errors"
+            exit 1
+          fi
+
+      - name: Check for setup script
+        run: |
+          echo "🔍 Checking for automation scripts..."
+
+          if [ -f "setup_mytriv_erp.sh" ]; then
+            echo "✅ Setup script found"
+
+            # Check if script is executable (in Git)
+            if [ -x "setup_mytriv_erp.sh" ]; then
+              echo "✅ Setup script has executable permissions"
+            else
+              echo "⚠️ Setup script may need executable permissions"
+            fi
+          else
+            echo "⚠️ No setup script found"
+          fi
+
+  # Final notification job
+  notify:
+    name: Notification
+    runs-on: ubuntu-latest
+    needs: [lint, build, env-check, security-check]
+    if: always()
+    steps:
+      - name: Generate pipeline summary
+        run: |
+          echo "📊 MyTriv ERP CI Pipeline Summary"
+          echo "======================================"
+
+          # Check results of all jobs
+          if [ "${{ needs.lint.result }}" == "success" ]; then
+            echo "✅ Lint & Validate: PASSED"
+          else
+            echo "❌ Lint & Validate: FAILED"
+          fi
+
+          if [ "${{ needs.build.result }}" == "success" ]; then
+            echo "✅ Build & Test: PASSED"
+          else
+            echo "❌ Build & Test: FAILED"
+          fi
+
+          if [ "${{ needs.env-check.result }}" == "success" ]; then
+            echo "✅ Environment Check: PASSED"
+          else
+            echo "❌ Environment Check: FAILED"
+          fi
+
+          if [ "${{ needs.security-check.result }}" == "success" ]; then
+            echo "✅ Security Scan: PASSED"
+          else
+            echo "❌ Security Scan: FAILED"
+          fi
+
+          echo ""
+          echo "🎉 MyTriv ERP CI pipeline completed!"
+          echo "📚 Check the individual job logs for detailed information."
+
+      - name: Comment on PR (if applicable)
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const status = '${{ job.status }}';
+            const body = `## 🔄 CI Pipeline Update\n\n` +
+                        `**Status:** ${status.toUpperCase()}\n\n` +
+                        `✅ **Lint & Validate:** ${{ needs.lint.result }}\n` +
+                        `🏗️ **Build & Test:** ${{ needs.build.result }}\n` +
+                        `🔒 **Security Scan:** ${{ needs.security-check.result }}\n` +
+                        `⚙️ **Environment Check:** ${{ needs.env-check.result }}\n\n` +
+                        `View detailed logs: [${{ github.run_id }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})`;
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: body
+            });
