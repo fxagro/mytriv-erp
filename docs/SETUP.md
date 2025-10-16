@@ -1,20 +1,26 @@
-# MyTriv ERP Multi-Version Setup Guide
+# MyTriv ERP Cloud Multi-Version Setup Guide
 
 ## Overview
 
-This guide provides comprehensive instructions for setting up MyTriv ERP with different Odoo versions using Docker. MyTriv ERP supports **Odoo 11 through Odoo 19**, allowing you to run multiple versions simultaneously for testing, migration, and production environments.
+### English
+
+This comprehensive guide provides detailed instructions for setting up MyTriv ERP Cloud with different Odoo versions using Docker. MyTriv ERP Cloud supports **Odoo 11 through Odoo 19**, allowing you to run multiple versions simultaneously for testing, migration, and production environments in cloud-native deployments.
+
+### Indonesian (Bahasa Indonesia)
+
+Panduan komprehensif ini menyediakan instruksi terperinci untuk menyiapkan MyTriv ERP Cloud dengan berbagai versi Odoo menggunakan Docker. MyTriv ERP Cloud mendukung **Odoo 11 hingga Odoo 19**, memungkinkan Anda menjalankan beberapa versi secara bersamaan untuk pengujian, migrasi, dan lingkungan produksi dalam deployment cloud-native.
 
 ## 🚀 Quick Start by Version
 
-### Default Setup (Odoo 17)
+### English
 
+#### Default Setup (Odoo 17)
 ```bash
 # Uses Odoo 17.0 by default
 curl -fsSL https://raw.githubusercontent.com/fxagro/mytriv-erp/main/setup_mytriv_erp.sh | bash
 ```
 
-### Specific Version Setup
-
+#### Specific Version Setup
 ```bash
 # Set environment variable for specific version
 export ODOO_VERSION=16.0
@@ -24,8 +30,7 @@ curl -fsSL https://raw.githubusercontent.com/fxagro/mytriv-erp/main/setup_mytriv
 ODOO_VERSION=15.0 curl -fsSL https://raw.githubusercontent.com/fxagro/mytriv-erp/main/setup_mytriv_erp.sh | bash
 ```
 
-### Manual Docker Build
-
+#### Manual Docker Build
 ```bash
 # Build specific Odoo version
 docker build --build-arg ODOO_VERSION=14.0 -t mytriv-erp:v14 .
@@ -34,15 +39,45 @@ docker build --build-arg ODOO_VERSION=14.0 -t mytriv-erp:v14 .
 docker run -d -p 8069:8069 --name mytriv-odoo14 mytriv-erp:v14
 ```
 
+### Indonesian (Bahasa Indonesia)
+
+#### Setup Default (Odoo 17)
+```bash
+# Menggunakan Odoo 17.0 secara default
+curl -fsSL https://raw.githubusercontent.com/fxagro/mytriv-erp/main/setup_mytriv_erp.sh | bash
+```
+
+#### Setup Versi Spesifik
+```bash
+# Setel variabel environment untuk versi spesifik
+export ODOO_VERSION=16.0
+curl -fsSL https://raw.githubusercontent.com/fxagro/mytriv-erp/main/setup_mytriv_erp.sh | bash
+
+# Atau gunakan argumen command line
+ODOO_VERSION=15.0 curl -fsSL https://raw.githubusercontent.com/fxagro/mytriv-erp/main/setup_mytriv_erp.sh | bash
+```
+
+#### Build Docker Manual
+```bash
+# Build versi Odoo spesifik
+docker build --build-arg ODOO_VERSION=14.0 -t mytriv-erp:v14 .
+
+# Jalankan container
+docker run -d -p 8069:8069 --name mytriv-odoo14 mytriv-erp:v14
+```
+
 ## 🏗️ Architecture Overview
 
-### Multi-Version Architecture
+### English
+
+#### Multi-Version Architecture
 
 ```mermaid
 graph TB
-    subgraph "Docker Layer"
+    subgraph "☁️ Cloud Layer"
         DC[Docker Compose]
         DV[Docker Volumes]
+        K8S[Kubernetes]
     end
 
     subgraph "Odoo Version Matrix"
@@ -61,6 +96,7 @@ graph TB
         DB[(PostgreSQL 15)]
         RD[(Redis Cache)]
         NG[Nginx Proxy]
+        LB[Load Balancer]
     end
 
     DC --> O11
@@ -72,6 +108,10 @@ graph TB
     DC --> O17
     DC --> O18
     DC --> O19
+
+    K8S --> O11
+    K8S --> O17
+    K8S --> O19
 
     O11 --> DB
     O12 --> DB
@@ -93,6 +133,87 @@ graph TB
     O18 --> RD
     O19 --> RD
 
+    LB --> NG
+    NG --> O11
+    NG --> O12
+    NG --> O13
+    NG --> O14
+    NG --> O15
+    NG --> O16
+    NG --> O17
+    NG --> O18
+    NG --> O19
+
+    DV --> DB
+    DV --> RD
+```
+
+### Indonesian (Bahasa Indonesia)
+
+#### Arsitektur Multi-Versi
+
+```mermaid
+graph TB
+    subgraph "☁️ Lapisan Cloud"
+        DC[Docker Compose]
+        DV[Docker Volumes]
+        K8S[Kubernetes]
+    end
+
+    subgraph "Matriks Versi Odoo"
+        O11[Odoo 11.0<br/>Python 3.6+]
+        O12[Odoo 12.0<br/>Python 3.6+]
+        O13[Odoo 13.0<br/>Python 3.7+]
+        O14[Odoo 14.0<br/>Python 3.8+]
+        O15[Odoo 15.0<br/>Python 3.8+]
+        O16[Odoo 16.0<br/>Python 3.9+]
+        O17[Odoo 17.0<br/>Python 3.10+]
+        O18[Odoo 18.0<br/>Python 3.11+]
+        O19[Odoo 19.0<br/>Python 3.12+]
+    end
+
+    subgraph "Layanan Bersama"
+        DB[(PostgreSQL 15)]
+        RD[(Redis Cache)]
+        NG[Nginx Proxy]
+        LB[Load Balancer]
+    end
+
+    DC --> O11
+    DC --> O12
+    DC --> O13
+    DC --> O14
+    DC --> O15
+    DC --> O16
+    DC --> O17
+    DC --> O18
+    DC --> O19
+
+    K8S --> O11
+    K8S --> O17
+    K8S --> O19
+
+    O11 --> DB
+    O12 --> DB
+    O13 --> DB
+    O14 --> DB
+    O15 --> DB
+    O16 --> DB
+    O17 --> DB
+    O18 --> DB
+    O19 --> DB
+
+    O11 --> RD
+    O12 --> RD
+    O13 --> RD
+    O14 --> RD
+    O15 --> RD
+    O16 --> RD
+    O17 --> RD
+    O18 --> RD
+    O19 --> RD
+
+    LB --> NG
     NG --> O11
     NG --> O12
     NG --> O13

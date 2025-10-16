@@ -1,12 +1,20 @@
-# MyTriv ERP Deployment Guide
+# MyTriv ERP Cloud Deployment Guide
 
 ## Overview
 
-This guide provides comprehensive instructions for deploying MyTriv ERP in various environments, from development to production. It covers Docker-based deployment, environment configuration, monitoring, and troubleshooting.
+### English
+
+This comprehensive guide provides instructions for deploying MyTriv ERP Cloud in various environments, from development to production. It covers Docker-based deployment, environment configuration, monitoring, and troubleshooting for cloud-native ERP deployments.
+
+### Indonesian (Bahasa Indonesia)
+
+Panduan komprehensif ini menyediakan instruksi untuk deployment MyTriv ERP Cloud di berbagai lingkungan, dari pengembangan hingga produksi. Panduan ini mencakup deployment berbasis Docker, konfigurasi environment, pemantauan, dan pemecahan masalah untuk deployment ERP cloud-native.
 
 ## Quick Start
 
-### 🚀 One-Command Deployment
+### English
+
+#### 🚀 One-Command Deployment
 
 For the fastest setup, use our automated deployment script:
 
@@ -19,7 +27,22 @@ chmod +x setup_mytriv_erp.sh
 
 This script handles everything: cloning, configuration, building, and starting all services.
 
-### 📋 Manual Deployment
+### Indonesian (Bahasa Indonesia)
+
+#### 🚀 Deployment Satu Perintah
+
+Untuk setup tercepat, gunakan script deployment otomatis kami:
+
+```bash
+# Download dan jalankan deployment script
+curl -fsSL https://raw.githubusercontent.com/fxagro/mytriv-erp/main/setup_mytriv_erp.sh -o setup_mytriv_erp.sh
+chmod +x setup_mytriv_erp.sh
+./setup_mytriv_erp.sh
+```
+
+Script ini menangani semuanya: cloning, konfigurasi, building, dan starting semua layanan.
+
+###  Manual Deployment
 
 ```bash
 # 1. Clone the repository

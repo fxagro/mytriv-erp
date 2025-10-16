@@ -1,12 +1,20 @@
-# MyTriv ERP Multi-Version Guide
+# MyTriv ERP Cloud Multi-Version Guide
 
 ## Overview
 
-This guide provides comprehensive strategies for managing multiple Odoo versions (11-19) within MyTriv ERP. It covers version compatibility testing, migration procedures, and best practices for maintaining a multi-version ERP environment.
+### English
+
+This comprehensive guide provides strategies for managing multiple Odoo versions (11-19) within MyTriv ERP Cloud. It covers version compatibility testing, migration procedures, and best practices for maintaining a multi-version ERP environment in cloud-native deployments.
+
+### Indonesian (Bahasa Indonesia)
+
+Panduan komprehensif ini menyediakan strategi untuk mengelola beberapa versi Odoo (11-19) dalam MyTriv ERP Cloud. Panduan ini mencakup pengujian kompatibilitas versi, prosedur migrasi, dan praktik terbaik untuk mempertahankan lingkungan ERP multi-versi dalam deployment cloud-native.
 
 ## 🏗️ Version Architecture
 
-### Supported Version Matrix
+### English
+
+#### Supported Version Matrix
 
 | Odoo Version | Release Year | Python | PostgreSQL | Status | Maintenance |
 |-------------|-------------|--------|------------|---------|-------------|
@@ -19,6 +27,22 @@ This guide provides comprehensive strategies for managing multiple Odoo versions
 | **17.0** | 2023 | 3.10+ | 15.0+ | **Default** | Active |
 | **18.0** | 2024 | 3.11+ | 15.0+ | Beta | Active |
 | **19.0** | 2025 | 3.12+ | 16.0+ | Beta | Active |
+
+### Indonesian (Bahasa Indonesia)
+
+#### Matriks Versi yang Didukung
+
+| Versi Odoo | Tahun Rilis | Python | PostgreSQL | Status | Pemeliharaan |
+|-------------|-------------|--------|------------|---------|-------------|
+| **11.0** | 2017 | 3.6+ | 9.6+ | LTS | Extended |
+| **12.0** | 2018 | 3.6+ | 10.0+ | Stabil | Standar |
+| **13.0** | 2019 | 3.7+ | 11.0+ | Stabil | Standar |
+| **14.0** | 2020 | 3.8+ | 12.0+ | Stabil | Standar |
+| **15.0** | 2021 | 3.8+ | 13.0+ | Stabil | Standar |
+| **16.0** | 2022 | 3.9+ | 14.0+ | Stabil | Standar |
+| **17.0** | 2023 | 3.10+ | 15.0+ | **Default** | Aktif |
+| **18.0** | 2024 | 3.11+ | 15.0+ | Beta | Aktif |
+| **19.0** | 2025 | 3.12+ | 16.0+ | Beta | Aktif |
 
 ### Version Compatibility Matrix
 

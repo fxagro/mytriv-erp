@@ -1,9 +1,14 @@
-# 🧩 MyTriv ERP
+# 🧩 MyTriv ERP Cloud
+
+<p align="center">
+  <img src="docs/assets/logo-placeholder.png" alt="MyTriv ERP Cloud Logo" width="200" height="80">
+</p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Setup-One--Command-blue?style=for-the-badge&logo=gnubash" alt="One-Command Setup">
   <img src="https://github.com/fxagro/mytriv-erp/actions/workflows/ci-cd.yml/badge.svg" alt="CI/CD Pipeline">
-  <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License">
+  <img src="https://img.shields.io/badge/Open--Core-green?style=for-the-badge" alt="Open-Core">
+  <img src="https://img.shields.io/badge/Cloud--Ready-2496ED?style=for-the-badge&logo=docker" alt="Cloud Ready">
 </p>
 
 <p align="center">
@@ -28,9 +33,9 @@
 </p>
 
 <p align="center">
-  <strong>Multi-Version Full-Stack ERP Solution</strong><br>
-  Compatible with <strong>Odoo 11-19</strong> backend with <strong>Next.js 15</strong> React frontend.<br>
-  Designed for <em>enterprise</em> environments with automated CI/CD and Dockerized multi-version support.
+  <strong>Cloud-Native Modular ERP Platform</strong><br>
+  Open-Core ERP solution with <strong>Odoo 11-19</strong> compatibility and <strong>Next.js 15</strong> frontend.<br>
+  Built for <em>modern enterprises</em> with cloud deployment, multi-tenancy, and enterprise monetization.
 </p>
 
 <div align="center">
@@ -39,21 +44,55 @@
 [🚀 Quick Start](#-quick-start) •
 [🔧 Features](#-features) •
 [🏗️ Multi-Version Support](#-multi-version-support) •
+[💰 Enterprise Plan](#-enterprise--monetization-plan) •
 [🤝 Contributing](docs/CONTRIBUTING.md) •
 [📚 Module Guide](docs/MODULE_GUIDE.md)
 
 </div>
 
-## ✨ Features
+---
 
-### 🎨 **Modern Frontend**
+## 📋 Table of Contents
+
+- [Overview](#overview)
+- [Key Features](#key-features)
+- [System Architecture](#system-architecture)
+- [Multi-Version Odoo Compatibility](#multi-version-odoo-compatibility-11–19)
+- [Quick Start (Docker)](#quick-start-docker)
+- [Development Guide](#development-guide)
+- [Enterprise & Monetization Plan](#enterprise--monetization-plan)
+- [License](#license)
+
+---
+
+## Overview
+
+### English
+
+MyTriv ERP Cloud is a modern, cloud-native Enterprise Resource Planning (ERP) platform built on the Odoo framework with a React/Next.js frontend. It offers a modular architecture that supports multiple Odoo versions (11-19) simultaneously, making it ideal for enterprises requiring version flexibility, testing capabilities, and gradual migration strategies.
+
+The platform follows an **open-core model** with free community features and premium enterprise extensions, designed for cloud deployment with multi-tenancy support and comprehensive monetization capabilities.
+
+### Indonesian (Bahasa Indonesia)
+
+MyTriv ERP Cloud adalah platform Enterprise Resource Planning (ERP) modern dan cloud-native yang dibangun di atas kerangka kerja Odoo dengan frontend React/Next.js. Platform ini menawarkan arsitektur modular yang mendukung beberapa versi Odoo (11-19) secara bersamaan, menjadikannya ideal untuk perusahaan yang memerlukan fleksibilitas versi, kemampuan pengujian, dan strategi migrasi bertahap.
+
+Platform ini mengikuti **model open-core** dengan fitur komunitas gratis dan ekstensi enterprise premium, dirancang untuk deployment cloud dengan dukungan multi-tenancy dan kemampuan monetisasi yang komprehensif.
+
+---
+
+## Key Features
+
+### English
+
+#### 🎨 **Modern Frontend**
 - ⚡ **Next.js 15** with App Router and Server Components
 - 🔷 **TypeScript** for complete type safety
 - 🎨 **TailwindCSS** + **shadcn/ui** for beautiful, accessible components
 - 📱 **Responsive Design** with mobile-first approach
 - 🌙 **Dark Mode** support out of the box
 
-### 🔧 **Multi-Version Backend**
+#### 🔧 **Multi-Version Backend**
 - 🏢 **Odoo 11-19 Community** - Full compatibility across 9 Odoo versions
 - 🚀 **Custom REST API** module for seamless integration
 - 🐍 **Python 3.8-3.12** with version-specific optimizations
@@ -61,151 +100,62 @@
 - 🔒 **Enterprise Security** with role-based access control
 - 🔄 **Version Migration Tools** for seamless upgrades
 
-### 🏗️ **Production Ready**
-- 🐳 **Docker & Docker Compose** for multi-version deployment
-- 🤖 **Automated Setup Script** for one-command installation
-- ⚙️ **GitHub Actions** CI/CD pipeline with version matrix testing
-- 🚨 **Health Checks** and monitoring across all versions
-- 📈 **Scalable Architecture** for enterprise growth
-- 🔄 **Hot Reload** development environment
-- 🎯 **Multi-Instance Deployment** for testing and staging
+#### ☁️ **Cloud-Native Architecture**
+- 🐳 **Docker & Kubernetes** ready for cloud deployment
+- 🔄 **Multi-tenancy** support for SaaS deployments
+- 📈 **Horizontal scaling** across multiple instances
+- 🚨 **Comprehensive monitoring** and alerting
+- 🔒 **Enterprise-grade security** with compliance features
 
-### 🔌 **API Integration**
-- 📡 **RESTful API** endpoints for all Odoo models
-- 🔍 **Advanced Filtering** and search capabilities
-- 📤 **Real-time Updates** with automatic UI refresh
-- 🛡️ **Error Handling** with user-friendly messages
-- 📋 **CRUD Operations** for complete data management
+#### 💰 **Monetization Ready**
+- 🆓 **Open-Core Model** - Free community + premium features
+- 👥 **Multi-tenant SaaS** architecture
+- 💳 **Subscription management** and billing integration
+- 🛒 **Marketplace** for custom modules and extensions
+- 📊 **Usage analytics** and reporting
 
-## 🏗️ Multi-Version Support
+### Indonesian (Bahasa Indonesia)
 
-MyTriv ERP supports **Odoo 11 through Odoo 19**, providing seamless compatibility across 9 major Odoo versions.
+#### 🎨 **Frontend Modern**
+- ⚡ **Next.js 15** dengan App Router dan Server Components
+- 🔷 **TypeScript** untuk keamanan tipe yang lengkap
+- 🎨 **TailwindCSS** + **shadcn/ui** untuk komponen yang indah dan dapat diakses
+- 📱 **Desain Responsif** dengan pendekatan mobile-first
+- 🌙 **Dukungan Dark Mode** langsung dari kotak
 
-### ✅ **Supported Versions**
-- **Odoo 11.0** - Legacy support with extended maintenance
-- **Odoo 12.0** - Enhanced performance and stability
-- **Odoo 13.0** - Modern UI/UX improvements
-- **Odoo 14.0** - Advanced reporting capabilities
-- **Odoo 15.0** - Improved mobile responsiveness
-- **Odoo 16.0** - Enhanced developer experience
-- **Odoo 17.0** - Latest stable release (default)
-- **Odoo 18.0** - Beta support with early features
-- **Odoo 19.0** - Beta support with cutting-edge capabilities
+#### 🔧 **Backend Multi-Versi**
+- 🏢 **Odoo 11-19 Community** - Kompatibilitas penuh di 9 versi Odoo
+- 🚀 **Modul REST API** khusus untuk integrasi yang mulus
+- 🐍 **Python 3.8-3.12** dengan optimasi khusus versi
+- 📊 **PostgreSQL 15** untuk penyimpanan data kelas enterprise
+- 🔒 **Keamanan Enterprise** dengan kontrol akses berbasis peran
+- 🔄 **Tools Migrasi Versi** untuk upgrade yang mulus
 
-### 🚀 **Version Selection**
+#### ☁️ **Arsitektur Cloud-Native**
+- 🐳 **Docker & Kubernetes** siap untuk deployment cloud
+- 🔄 **Dukungan Multi-tenancy** untuk deployment SaaS
+- 📈 **Penskalaan horizontal** di beberapa instance
+- 🚨 **Pemantauan komprehensif** dan alerting
+- 🔒 **Keamanan kelas enterprise** dengan fitur kepatuhan
 
-#### Quick Start with Default Version (Odoo 17)
-```bash
-# Uses Odoo 17.0 by default
-curl -fsSL https://raw.githubusercontent.com/fxagro/mytriv-erp/main/setup_mytriv_erp.sh | bash
-```
+#### 💰 **Siap Monetisasi**
+- 🆓 **Model Open-Core** - Komunitas gratis + fitur premium
+- 👥 **Arsitektur Multi-tenant SaaS**
+- 💳 **Manajemen langganan** dan integrasi penagihan
+- 🛒 **Marketplace** untuk modul dan ekstensi khusus
+- 📊 **Analitik penggunaan** dan pelaporan
 
-#### Specify Odoo Version
-```bash
-# Set ODOO_VERSION environment variable
-export ODOO_VERSION=16.0
-curl -fsSL https://raw.githubusercontent.com/fxagro/mytriv-erp/main/setup_mytriv_erp.sh | bash
-```
+---
 
-#### Docker Build with Version Argument
-```bash
-# Build specific Odoo version
-docker build --build-arg ODOO_VERSION=15.0 -t mytriv-erp:v15 .
+## System Architecture
 
-# Run multiple versions simultaneously
-docker-compose -f docker-compose.multi-version.yml up -d
-```
+### English
 
-### 🏭 **Multi-Instance Deployment**
+MyTriv ERP Cloud employs a modern, scalable architecture designed for cloud deployment and multi-tenancy. The system is built with microservices principles while maintaining Odoo's modular approach.
 
-Run multiple Odoo versions simultaneously for testing and migration:
+### Indonesian (Bahasa Indonesia)
 
-```yaml
-# docker-compose.multi-version.yml
-services:
-  odoo11:
-    build:
-      context: .
-      args:
-        ODOO_VERSION: 11.0
-    ports:
-      - "8011:8069"
-
-  odoo17:
-    build:
-      context: .
-      args:
-        ODOO_VERSION: 17.0
-    ports:
-      - "8017:8069"
-
-  odoo19:
-    build:
-      context: .
-      args:
-        ODOO_VERSION: 19.0
-    ports:
-      - "8019:8069"
-```
-
-### 🔄 **Version Migration Strategy**
-
-#### Database Migration
-```bash
-# 1. Backup current database
-docker-compose exec postgres pg_dump -U odoo mytriv_erp > backup_v17.sql
-
-# 2. Deploy new version
-export ODOO_VERSION=18.0
-docker-compose up -d --build
-
-# 3. Test migration (dry run)
-docker-compose exec odoo odoo-bin -u all --test
-
-# 4. Apply migration
-docker-compose exec odoo odoo-bin -u all
-```
-
-#### Module Compatibility
-- **Core modules** compatible across all versions
-- **Version-specific features** automatically enabled/disabled
-- **Migration scripts** handle data transformations
-- **Testing matrix** ensures compatibility
-
-### 🧪 **Testing Matrix**
-
-Every commit triggers automated testing across all supported versions:
-
-```yaml
-# .github/workflows/ci-cd.yml
-strategy:
-  matrix:
-    odoo_version: [11.0, 12.0, 13.0, 14.0, 15.0, 16.0, 17.0, 18.0, 19.0]
-```
-
-**Test Coverage:**
-- ✅ **Unit Tests** - Model and API functionality
-- ✅ **Integration Tests** - Cross-module compatibility
-- ✅ **Migration Tests** - Version upgrade scenarios
-- ✅ **Performance Tests** - Load testing across versions
-
-### 📊 **Version Comparison**
-
-| Version | Release Year | Python | PostgreSQL | Key Features |
-|---------|-------------|--------|------------|--------------|
-| **Odoo 11** | 2017 | 3.6+ | 9.6+ | Modern UI, IoT |
-| **Odoo 12** | 2018 | 3.6+ | 10.0+ | Performance, Studio |
-| **Odoo 13** | 2019 | 3.7+ | 11.0+ | Mobile, Reporting |
-| **Odoo 14** | 2020 | 3.8+ | 12.0+ | Website, E-commerce |
-| **Odoo 15** | 2021 | 3.8+ | 13.0+ | Accounting, Documents |
-| **Odoo 16** | 2022 | 3.9+ | 14.0+ | Knowledge, Manufacturing |
-| **Odoo 17** | 2023 | 3.10+ | 15.0+ | Dashboard, AI |
-| **Odoo 18** | 2024 | 3.11+ | 15.0+ | Advanced Analytics |
-| **Odoo 19** | 2025 | 3.12+ | 16.0+ | Next-gen Features |
-
-## 🏛️ Architecture Overview
-
-### **Multi-Version Architecture Diagram**
+MyTriv ERP Cloud menggunakan arsitektur modern dan skalabel yang dirancang untuk deployment cloud dan multi-tenancy. Sistem ini dibangun dengan prinsip microservices sambil mempertahankan pendekatan modular Odoo.
 
 ```mermaid
 graph TB
@@ -215,666 +165,297 @@ graph TB
         T[🖥️ Third-party Systems]
     end
 
-    subgraph "🚀 MyTriv ERP Platform"
-        subgraph "⚛️ Frontend Layer"
-            F[Next.js 15 React App]
-            S[shadcn/ui Components]
-            A[API Client]
+    subgraph "☁️ Cloud Platform"
+        subgraph "🚀 Load Balancer & API Gateway"
+            LB[Load Balancer]
+            GW[API Gateway]
+            AUTH[Authentication Service]
         end
 
-        subgraph "🔧 Backend Layer"
-            subgraph "Odoo Version Matrix"
-                O11[Odoo 11.0]
-                O12[Odoo 12.0]
-                O13[Odoo 13.0]
-                O14[Odoo 14.0]
-                O15[Odoo 15.0]
-                O16[Odoo 16.0]
-                O17[Odoo 17.0<br/>Default]
-                O18[Odoo 18.0]
-                O19[Odoo 19.0]
+        subgraph "🔧 Application Layer"
+            subgraph "⚛️ Frontend Services"
+                F[Next.js 15 App]
+                S[shadcn/ui Components]
+                A[API Client]
             end
 
-            subgraph "Core Services"
+            subgraph "🔧 Backend Services"
+                O11[Odoo 11 Instance]
+                O17[Odoo 17 Instance]
+                O19[Odoo 19 Instance]
                 R[base_rest_api Module]
-                C[Custom Controllers]
-                M[Odoo Models]
-                V[Views & Templates]
             end
         end
 
         subgraph "💾 Data Layer"
-            P[(PostgreSQL 15)]
-            RC[(Redis Cache)]
+            P[(PostgreSQL Cluster)]
+            RD[(Redis Cluster)]
+            FS[(File Storage)]
         end
-    end
-
-    subgraph "🏭 Infrastructure"
-        D[Docker Engine]
-        DC[Docker Compose]
-        GH[GHA CI/CD]
-        NG[Nginx Proxy]
     end
 
     %% Connections
-    U --> F
-    M --> F
-    T --> A
+    U --> LB
+    M --> LB
+    T --> GW
+
+    LB --> F
+    GW --> R
 
     F --> R
-    S --> F
     A --> R
 
     R --> O11
-    R --> O12
-    R --> O13
-    R --> O14
-    R --> O15
-    R --> O16
     R --> O17
-    R --> O18
     R --> O19
 
     O11 --> P
-    O12 --> P
-    O13 --> P
-    O14 --> P
-    O15 --> P
-    O16 --> P
     O17 --> P
-    O18 --> P
     O19 --> P
 
-    O11 --> RC
-    O12 --> RC
-    O13 --> RC
-    O14 --> RC
-    O15 --> RC
-    O16 --> RC
-    O17 --> RC
-    O18 --> RC
-    O19 --> RC
-
-    C --> M
-    M --> V
-
-    D --> DC
-    DC --> GH
-    NG --> F
-    NG --> R
-
-    %% Styling
-    classDef default fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef odoo fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    classDef frontend fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef data fill:#e8f5e8,stroke:#1b5e20,stroke-width:2px
-    classDef infra fill:#fce4ec,stroke:#880e4f,stroke-width:2px
-
-    class O11,O12,O13,O14,O15,O16,O17,O18,O19 odoo
-    class F,S,A frontend
-    class P,RC data
-    class D,DC,GH,NG infra
+    AUTH --> P
+    AUTH --> RD
 ```
 
-### **Deployment Architecture**
+---
 
-```mermaid
-graph LR
-    subgraph "Development Environment"
-        subgraph "Local Development"
-            LD[💻 Local Machine]
-            DV[Docker Compose]
-            DBL[(Local PostgreSQL)]
-        end
+## Multi-Version Odoo Compatibility (11–19)
 
-        subgraph "Version Testing"
-            VT1[Odoo 11 Test]
-            VT2[Odoo 17 Test]
-            VT3[Odoo 19 Test]
-        end
-    end
+### English
 
-    subgraph "CI/CD Pipeline"
-        GH[GHA Workflow]
-        TB[Test Build]
-        SB[Staging Build]
-        PB[Production Build]
-    end
+MyTriv ERP Cloud provides seamless compatibility across **9 Odoo versions**, allowing enterprises to run multiple versions simultaneously for testing, migration, and gradual rollout strategies.
 
-    subgraph "Production Environment"
-        subgraph "Multi-Version Production"
-            PV1[Odoo 11 Prod]
-            PV2[Odoo 17 Prod]
-            PV3[Odoo 19 Prod]
-        end
+#### Supported Versions Matrix
 
-        LB[Load Balancer]
-        DBP[(Production DB)]
-        CDN[CDN]
-    end
+| Version | Status | Python | Key Features | Use Case |
+|---------|--------|--------|--------------|----------|
+| **Odoo 11** | Legacy | 3.6+ | Modern UI, IoT | Legacy system support |
+| **Odoo 12** | Stable | 3.6+ | Performance, Studio | Production deployments |
+| **Odoo 13** | Stable | 3.7+ | Mobile, Reporting | Mobile-first businesses |
+| **Odoo 14** | Stable | 3.8+ | Website, E-commerce | Online businesses |
+| **Odoo 15** | Stable | 3.8+ | Accounting, Documents | Finance-focused |
+| **Odoo 16** | Stable | 3.9+ | Knowledge, Manufacturing | Manufacturing |
+| **Odoo 17** | **Default** | 3.10+ | Dashboard, AI | Recommended |
+| **Odoo 18** | Beta | 3.11+ | Advanced Analytics | Early adopters |
+| **Odoo 19** | Beta | 3.12+ | Next-gen Features | Innovation testing |
 
-    %% Development Flow
-    LD --> DV
-    DV --> DBL
-    DV --> VT1
-    DV --> VT2
-    DV --> VT3
+### Indonesian (Bahasa Indonesia)
 
-    %% CI/CD Flow
-    GH --> TB
-    TB --> SB
-    SB --> PB
+MyTriv ERP Cloud menyediakan kompatibilitas yang mulus di **9 versi Odoo**, memungkinkan perusahaan untuk menjalankan beberapa versi secara bersamaan untuk pengujian, migrasi, dan strategi peluncuran bertahap.
 
-    %% Production Flow
-    VT1 --> PV1
-    VT2 --> PV2
-    VT3 --> PV3
+#### Matriks Versi yang Didukung
 
-    PV1 --> LB
-    PV2 --> LB
-    PV3 --> LB
+| Versi | Status | Python | Fitur Utama | Kasus Penggunaan |
+|-------|--------|--------|-------------|------------------|
+| **Odoo 11** | Legacy | 3.6+ | UI Modern, IoT | Dukungan sistem legacy |
+| **Odoo 12** | Stabil | 3.6+ | Performa, Studio | Deployment produksi |
+| **Odoo 13** | Stabil | 3.7+ | Mobile, Pelaporan | Bisnis mobile-first |
+| **Odoo 14** | Stabil | 3.8+ | Website, E-commerce | Bisnis online |
+| **Odoo 15** | Stabil | 3.8+ | Akuntansi, Dokumen | Berfokus pada keuangan |
+| **Odoo 16** | Stabil | 3.9+ | Pengetahuan, Manufaktur | Manufaktur |
+| **Odoo 17** | **Default** | 3.10+ | Dashboard, AI | Direkomendasikan |
+| **Odoo 18** | Beta | 3.11+ | Analitik Lanjutan | Early adopters |
+| **Odoo 19** | Beta | 3.12+ | Fitur Next-gen | Pengujian inovasi |
 
-    LB --> DBP
-    LB --> CDN
+---
 
-    %% Styling
-    classDef dev fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
-    classDef cicd fill:#fff3e0,stroke:#f57c00,stroke-width:2px
-    classDef prod fill:#e8f5e8,stroke:#388e3c,stroke-width:2px
+## Quick Start (Docker)
 
-    class LD,DV,DBL,VT1,VT2,VT3 dev
-    class GH,TB,SB,PB cicd
-    class PV1,PV2,PV3,LB,DBP,CDN prod
-```
+### English
 
-## 📋 Table of Contents
+Get started with MyTriv ERP Cloud in minutes using Docker:
 
-- [Quick Start](#quick-start)
-- [Automated Setup Details](#automated-setup-details)
-- [Manual Setup Guide](#manual-setup-guide)
-- [Prerequisites](#prerequisites)
-- [Development](#development)
-- [API Usage](#api-usage)
-- [CI/CD Pipeline](#cicd-pipeline)
-- [Project Structure](#project-structure)
-- [Documentation](#documentation)
-- [Contributing](#contributing)
-- [License](#license)
-
-## 🚀 Quick Start
-
-Get MyTriv ERP up and running in **seconds** with one of these options:
-
-### ⚡ One-Line Setup (Recommended)
+#### One-Command Setup
 ```bash
+# Uses Odoo 17.0 by default
 curl -fsSL https://raw.githubusercontent.com/fxagro/mytriv-erp/main/setup_mytriv_erp.sh | bash
 ```
 
-### 🤖 Interactive Setup Script
+#### Manual Docker Setup
 ```bash
-# Download the setup script
-curl -fsSL https://raw.githubusercontent.com/fxagro/mytriv-erp/main/setup_mytriv_erp.sh -o setup_mytriv_erp.sh
-chmod +x setup_mytriv_erp.sh
-./setup_mytriv_erp.sh
-```
-
-### 📋 Manual Setup (Advanced Users)
-```bash
+# Clone repository
 git clone https://github.com/fxagro/mytriv-erp.git
 cd mytriv-erp
+
+# Configure environment
 cp .env.example .env
-docker compose up -d
+
+# Start all services
+docker-compose up -d
 ```
 
-### 🌐 **Access Your ERP System**
+#### Access Points
 | Service | URL | Description |
 |---------|-----|-------------|
 | **Frontend** | http://localhost:3000 | React/Next.js application |
 | **Backend** | http://localhost:8069 | Odoo ERP system (v17 default) |
-| **Employee API** | http://localhost:8069/api/v1/employees | REST API endpoint |
-| **Generic API** | http://localhost:8069/api | All Odoo models API |
-| **Database** | localhost:5432 | PostgreSQL admin |
+| **API** | http://localhost:8069/api | REST API endpoints |
 
-### 🔄 **Multi-Version Access**
-| Version | Backend URL | Description |
-|---------|-------------|-------------|
-| **Odoo 11** | http://localhost:8011 | Legacy version instance |
-| **Odoo 12** | http://localhost:8012 | Previous version instance |
-| **Odoo 17** | http://localhost:8069 | Default version (recommended) |
-| **Odoo 18** | http://localhost:8018 | Latest stable version |
-| **Odoo 19** | http://localhost:8019 | Beta version instance |
+### Indonesian (Bahasa Indonesia)
 
----
+Mulai dengan MyTriv ERP Cloud dalam hitungan menit menggunakan Docker:
 
-## 🤖 Automated Setup Details
-
-The automated script handles the complete setup process:
-
-### ✅ **What It Does**
-- **Clones** repository and initializes Git
-- **Validates** Docker and port availability
-- **Builds** all containers with health checks
-- **Starts** services and verifies they're running
-- **Displays** access URLs and helpful commands
-
-### 🎨 **Features**
-- **Colored output** with progress indicators
-- **Error handling** with cleanup and suggestions
-- **Port conflict detection** for smooth installation
-- **Pre-flight checks** for all dependencies
-- **Automatic GitHub remote configuration**
-
-### 📋 **Requirements**
-- **Linux/macOS/WSL** (Windows supported via WSL)
-- **Docker & Docker Compose**
-- **Git** (for cloning and remote setup)
-- **4GB+ RAM** and 10GB+ free disk space
-- **Internet connection** (for GitHub operations)
-
----
-
-## 📥 Manual Setup Guide
-
-For developers who prefer manual control or are on Windows without WSL:
-
-### 📥 **Step 1: Clone & Setup**
-
-#### Option A: Automated Setup (Recommended)
+#### Setup Satu Perintah
 ```bash
-# Download and run the automated setup script
-curl -fsSL https://raw.githubusercontent.com/fxagro/mytriv-erp/main/setup_mytriv_erp.sh -o setup_mytriv_erp.sh
-chmod +x setup_mytriv_erp.sh
-./setup_mytriv_erp.sh
+# Menggunakan Odoo 17.0 secara default
+curl -fsSL https://raw.githubusercontent.com/fxagro/mytriv-erp/main/setup_mytriv_erp.sh | bash
 ```
 
-#### Option B: Manual Setup
+#### Setup Docker Manual
 ```bash
+# Clone repository
 git clone https://github.com/fxagro/mytriv-erp.git
 cd mytriv-erp
-cp .env.example .env
-```
 
-### 🐳 **Step 2: Start Services**
-```bash
+# Konfigurasi environment
+cp .env.example .env
+
+# Start semua layanan
 docker-compose up -d
 ```
 
-### 🌐 **Step 3: Access Application**
-| Service | URL | Description |
-|---------|-----|-------------|
-| **Frontend** | http://localhost:3000 | React application |
-| **Backend** | http://localhost:8069 | Odoo ERP system |
-| **Employee API** | http://localhost:8069/api/v1/employees | Employee REST API |
-| **Generic API** | http://localhost:8069/api | Generic REST API endpoints |
-| **Database** | localhost:5432 | PostgreSQL admin |
-
-**That's it! 🎉** Your ERP system is ready!
-
-### 🧪 **Test the API**
-```bash
-# Get all available models
-curl http://localhost:8069/api/models
-
-# Get employees using the dedicated API endpoint
-curl http://localhost:8069/api/v1/employees
-
-# Get employees using the generic API (alternative)
-curl http://localhost:8069/api/models/hr.employee
-```
-
-## 📋 Prerequisites
-
-Before running MyTriv ERP, ensure you have:
-
-- **Docker & Docker Compose** (recommended)
-- **Git** for version control
-- **At least 4GB RAM** available
-- **10GB free disk space** for databases and containers
-
-### System Requirements
-
-| Component | Minimum | Recommended |
-|-----------|---------|-------------|
-| RAM | 4GB | 8GB |
-| CPU | 2 cores | 4 cores |
-| Storage | 10GB | 20GB |
-| OS | Linux/Windows/macOS | Linux |
-
-## 🔧 Installation
-
-### Option 1: Docker Compose (Recommended)
-
-1. **Clone and navigate:**
-   ```bash
-   git clone https://github.com/fxagro/mytriv-erp.git
-   cd mytriv-erp
-   ```
-
-2. **Configure environment:**
-   ```bash
-   cp .env.example .env
-   # Edit .env file with your settings
-   ```
-
-3. **Start services:**
-   ```bash
-   docker-compose up -d
-   ```
-
-4. **Verify installation:**
-   ```bash
-   # Check container status
-   docker-compose ps
-
-   # View logs
-   docker-compose logs -f odoo
-   ```
-
-### Option 2: Manual Installation
-
-#### Frontend Setup
-
-```bash
-cd frontend
-npm install
-npm run build
-npm start
-```
-
-#### Backend Setup
-
-```bash
-cd backend
-# Install Odoo dependencies
-pip install -r requirements.txt
-
-# Configure Odoo
-cp odoo.conf.example odoo.conf
-# Edit odoo.conf with your database settings
-
-# Start Odoo
-./odoo-bin -c odoo.conf
-```
-
-## 💻 Development
-
-### Development Environment
-
-1. **Start development services:**
-   ```bash
-   docker-compose -f docker-compose.dev.yml up
-   ```
-
-2. **Frontend development:**
-   ```bash
-   cd frontend
-   npm run dev
-   ```
-
-3. **Backend development:**
-   - Access Odoo at http://localhost:8069
-   - Enable developer mode for advanced features
-
-### Code Quality
-
-- **Frontend**: ESLint, Prettier, TypeScript
-- **Backend**: Python PEP 8, Odoo guidelines
-- **Testing**: Jest (frontend), unittest (backend)
-
-Run tests:
-```bash
-# Frontend tests
-cd frontend && npm test
-
-# Backend tests
-cd backend && python -m pytest
-
-# All tests
-npm run test:all
-```
-
-## 🔌 API Usage
-
-MyTriv ERP includes a comprehensive REST API for all Odoo models.
-
-### Basic API Endpoints
-
-```bash
-# Get all models (generic API)
-GET /api/models
-
-# Get employees (dedicated API endpoint)
-GET /api/v1/employees
-
-# Get employees (generic API - alternative)
-GET /api/models/hr.employee
-
-# Get specific employee
-GET /api/v1/employees/1
-# OR
-GET /api/models/hr.employee/1
-
-# Create new employee
-POST /api/v1/employees
-{
-  "name": "John Doe",
-  "work_email": "john@example.com",
-  "job_title": "Software Engineer",
-  "work_phone": "+1234567890"
-}
-
-# Update employee
-PUT /api/v1/employees/1
-{
-  "work_phone": "+1234567890"
-}
-
-# Delete employee
-DELETE /api/v1/employees/1
-```
-
-### Frontend Integration Example
-
-```typescript
-import { employeeService } from '@/services/employeeService';
-
-async function fetchEmployees() {
-  try {
-    const employees = await employeeService.getEmployees();
-    console.log('Employees:', employees);
-  } catch (error) {
-    console.error('Error fetching employees:', error);
-  }
-}
-```
-
-## 🔄 CI/CD Pipeline
-
-MyTriv ERP includes a comprehensive GitHub Actions workflow that runs on every push and pull request:
-
-### ✅ **Automated Checks**
-- **Lint & Validate** - YAML syntax and Docker Compose validation
-- **Build & Test** - Container building and startup testing
-- **Security Scan** - Vulnerability scanning with Trivy
-- **Environment Check** - Required files and configuration validation
-- **Notification** - Status reporting and PR comments
-
-### 🔍 **Pipeline Features**
-- **Multi-job parallel execution** for faster results
-- **Security vulnerability reporting** in GitHub Security tab
-- **Automatic PR commenting** with pipeline status
-- **Comprehensive error reporting** with actionable feedback
-- **Container health verification** before marking as successful
-
-### 🚨 **Security Scanning**
-The pipeline includes automated security scanning that:
-- Scans all container images for vulnerabilities
-- Reports HIGH and CRITICAL severity issues
-- Generates SARIF reports for GitHub Security tab
-- Provides actionable remediation suggestions
+#### Titik Akses
+| Layanan | URL | Deskripsi |
+|---------|-----|-----------|
+| **Frontend** | http://localhost:3000 | Aplikasi React/Next.js |
+| **Backend** | http://localhost:8069 | Sistem ERP Odoo (v17 default) |
+| **API** | http://localhost:8069/api | Endpoint REST API |
 
 ---
 
-## 🚢 Deployment
+## Development Guide
 
-### Production Deployment
+### English
 
-1. **Environment setup:**
-   ```bash
-   cp .env.example .env.production
-   # Configure production settings
-   ```
+#### Prerequisites
+- **Docker & Docker Compose**
+- **Node.js 18+** (for local frontend development)
+- **Python 3.10+** (for local backend development)
+- **Git** for version control
 
-2. **Build and deploy:**
-   ```bash
-   docker-compose -f docker-compose.production.yml up -d
-   ```
+#### Local Development Setup
+```bash
+# 1. Clone and setup
+git clone https://github.com/fxagro/mytriv-erp.git
+cd mytriv-erp
+cp .env.example .env
 
-3. **Health checks:**
-   ```bash
-   curl http://your-domain.com/api/v1/employees
-   ```
+# 2. Start backend services
+docker-compose up -d postgres redis
 
-### Environment Variables
+# 3. Setup frontend (local development)
+cd frontend
+npm install
+npm run dev
 
-Key environment variables for production:
-
-```env
-NODE_ENV=production
-NEXT_PUBLIC_API_URL=https://your-api-domain.com/api
-POSTGRES_PASSWORD=your-secure-password
-ODOO_PASSWORD=your-odoo-master-password
+# 4. Setup backend (local development)
+cd backend
+pip install -r requirements.txt
+./odoo-bin -c odoo.conf --dev=all
 ```
 
-## 📁 Project Structure
+### Indonesian (Bahasa Indonesia)
 
+#### Prasyarat
+- **Docker & Docker Compose**
+- **Node.js 18+** (untuk pengembangan frontend lokal)
+- **Python 3.10+** (untuk pengembangan backend lokal)
+- **Git** untuk kontrol versi
+
+#### Setup Pengembangan Lokal
+```bash
+# 1. Clone dan setup
+git clone https://github.com/fxagro/mytriv-erp.git
+cd mytriv-erp
+cp .env.example .env
+
+# 2. Start layanan backend
+docker-compose up -d postgres redis
+
+# 3. Setup frontend (pengembangan lokal)
+cd frontend
+npm install
+npm run dev
+
+# 4. Setup backend (pengembangan lokal)
+cd backend
+pip install -r requirements.txt
+./odoo-bin -c odoo.conf --dev=all
 ```
-mytriv-erp/
-├── frontend/              # Next.js 15 React application
-│   ├── src/
-│   │   ├── app/          # Next.js App Router pages
-│   │   ├── components/   # Reusable UI components
-│   │   └── lib/          # Utility functions
-│   ├── Dockerfile        # Frontend container config
-│   └── package.json      # Frontend dependencies
-├── backend/              # Odoo 17 backend
-│   ├── addons/          # Odoo modules
-│   │   └── base_rest_api/ # REST API module
-│   ├── Dockerfile       # Backend container config
-│   └── requirements.txt # Python dependencies
-├── docs/                # Documentation
-│   ├── ARCHITECTURE.md  # System architecture
-│   ├── CONTRIBUTING.md  # Contribution guidelines
-│   └── MODULE_GUIDE.md  # Module development guide
-├── .github/            # GitHub configuration
-│   └── workflows/      # CI/CD pipelines
-├── setup_mytriv_erp.sh # Automated setup script
-├── docker-compose.yml  # Development environment
-├── .env.example       # Environment configuration template
-└── README.md          # This file
-```
 
-## 🤝 Contributing
+---
 
-We welcome contributions! Please see our [Contributing Guide](docs/CONTRIBUTING.md) for details.
+## Enterprise & Monetization Plan
 
-### How to Contribute
+### English
 
-1. **Fork** the repository
-2. **Create** a feature branch
-3. **Make** your changes
-4. **Test** thoroughly
-5. **Submit** a pull request
+MyTriv ERP Cloud implements a comprehensive **open-core monetization strategy** designed for sustainable business growth while maintaining strong community engagement.
 
-### Development Process
+#### Open-Core Model
+- **🆓 Community Edition**: Full ERP functionality with Odoo 11-19 support
+- **💰 Enterprise Edition**: Premium features, dedicated support, and advanced integrations
+- **🔧 Custom Development**: Bespoke module development and consulting services
 
-- Follow conventional commit messages
-- Write tests for new features
-- Update documentation as needed
-- Ensure CI/CD checks pass
+#### SaaS Monetization Tiers
 
-## 📚 Documentation
+| Tier | Monthly Price | Features | Target Market |
+|------|---------------|----------|---------------|
+| **Starter** | $29/user | Basic ERP, 1 Odoo version | Small businesses |
+| **Professional** | $79/user | Multi-version, API access | Growing companies |
+| **Enterprise** | $149/user | Custom modules, priority support | Large enterprises |
+| **Custom** | Quote-based | Full customization, on-premise | Enterprise clients |
 
-### 📖 **Core Documentation**
-- **[🏗️ Architecture Guide](docs/ARCHITECTURE.md)**: System design and architecture overview
-- **[🔧 Module Development Guide](docs/MODULE_GUIDE.md)**: Creating custom Odoo modules and extensions
-- **[🔌 API Documentation](docs/API_DOCUMENTATION.md)**: Complete REST API reference and examples
-- **[🚢 Deployment Guide](docs/DEPLOYMENT.md)**: Production deployment and DevOps instructions
-- **[⚙️ Multi-Version Setup Guide](docs/SETUP.md)**: Docker setup for different Odoo versions
-- **[🔄 Multi-Version Guide](docs/MULTI_VERSION_GUIDE.md)**: Version matrix testing and migration strategies
+#### Revenue Streams
+1. **SaaS Subscriptions** - Recurring revenue from cloud deployments
+2. **Custom Module Marketplace** - Commission from third-party modules
+3. **Enterprise Support** - SLA-based support contracts
+4. **Consulting Services** - Implementation and customization services
+5. **Partner Program** - Revenue sharing with implementation partners
 
-### 🤝 **Community & Support**
-- **[📝 Contributing Guide](docs/CONTRIBUTING.md)**: How to contribute to MyTriv ERP
-- **[🐛 Issues](https://github.com/fxagro/mytriv-erp/issues)**: Report bugs and request features
-- **[💬 Discussions](https://github.com/fxagro/mytriv-erp/discussions)**: Join community conversations
+### Indonesian (Bahasa Indonesia)
 
-## 🛠️ Tech Stack
+MyTriv ERP Cloud menerapkan strategi monetisasi **open-core** yang komprehensif yang dirancang untuk pertumbuhan bisnis yang berkelanjutan sambil mempertahankan keterlibatan komunitas yang kuat.
 
-### Frontend
-- **Next.js 15** - React framework with App Router
-- **TypeScript** - Type-safe JavaScript
-- **TailwindCSS** - Utility-first CSS framework
-- **shadcn/ui** - Modern UI components
-- **Axios** - HTTP client for API calls
+#### Model Open-Core
+- **🆓 Edisi Komunitas**: Fungsi ERP lengkap dengan dukungan Odoo 11-19
+- **💰 Edisi Enterprise**: Fitur premium, dukungan dedicated, dan integrasi lanjutan
+- **🔧 Pengembangan Khusus**: Pengembangan modul bespoke dan layanan konsultasi
 
-### Backend
-- **Odoo 17** - Enterprise resource planning framework
-- **Python 3.11** - Server-side programming
-- **PostgreSQL 15** - Relational database
-- **Werkzeug** - WSGI web framework
+#### Tingkatan Monetisasi SaaS
 
-### DevOps
-- **Docker** - Containerization platform
-- **Docker Compose** - Multi-container orchestration
-- **GitHub Actions** - CI/CD automation
-- **Nginx** - Reverse proxy (production)
+| Tingkat | Harga Bulanan | Fitur | Pasar Sasaran |
+|---------|---------------|-------|---------------|
+| **Starter** | $29/user | ERP dasar, 1 versi Odoo | Bisnis kecil |
+| **Professional** | $79/user | Multi-versi, akses API | Perusahaan berkembang |
+| **Enterprise** | $149/user | Modul khusus, dukungan prioritas | Perusahaan besar |
+| **Custom** | Berbasis kuota | Kustomisasi penuh, on-premise | Klien enterprise |
 
-## 📄 License
+#### Aliran Pendapatan
+1. **Langganan SaaS** - Pendapatan berulang dari deployment cloud
+2. **Marketplace Modul Khusus** - Komisi dari modul pihak ketiga
+3. **Dukungan Enterprise** - Kontrak dukungan berbasis SLA
+4. **Layanan Konsultasi** - Layanan implementasi dan kustomisasi
+5. **Program Partner** - Pembagian pendapatan dengan partner implementasi |
 
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+---
 
-## 🙏 Acknowledgments
+## License
 
-- **Odoo Community** for the excellent ERP framework
-- **Next.js Team** for the modern React framework
-- **shadcn/ui** for beautiful and accessible UI components
-- **Open Source Community** for continuous inspiration and support
+### English
 
-## 📞 Support
+MyTriv ERP Cloud is released under the **MIT License** for the core platform, with the following structure:
 
-### Getting Help
+- **Open Source Core**: MIT License - Free for personal and commercial use
+- **Enterprise Extensions**: Proprietary License - Commercial use requires subscription
+- **Custom Modules**: Varies by module license (MIT, Proprietary, or Custom)
 
-- **📖 Documentation**: Check our comprehensive docs
-- **🐛 Issues**: Report bugs and request features
-- **💬 Discussions**: Join community conversations
-- **📧 Email**: Contact the maintainers
+### Indonesian (Bahasa Indonesia)
 
-### Resources
+MyTriv ERP Cloud dirilis di bawah **Lisensi MIT** untuk platform inti, dengan struktur sebagai berikut:
 
-- [Odoo Documentation](https://www.odoo.com/documentation)
-- [Next.js Documentation](https://nextjs.org/docs)
-- [React Documentation](https://react.dev)
-- [TailwindCSS Documentation](https://tailwindcss.com/docs)
-
-## 🎯 Roadmap
-
-### Upcoming Features
-
-- [ ] **Mobile App**: React Native companion app
-- [ ] **Advanced Analytics**: Business intelligence dashboard
-- [ ] **Multi-tenancy**: Support for multiple organizations
-- [ ] **API Rate Limiting**: Enhanced API security
-- [ ] **Real-time Updates**: WebSocket integration
-- [ ] **Advanced Reporting**: Custom report builder
-
-### Version History
-
-- **v1.0.0**: Initial release with core ERP functionality
-- **v0.1.0**: Pre-release with basic setup and API
-
-## 🌐 Repository
-
-**🔗 GitHub:** `https://github.com/fxagro/mytriv-erp.git`
+- **Core Open Source**: Lisensi MIT - Gratis untuk penggunaan pribadi dan komersial
+- **Ekstensi Enterprise**: Lisensi Proprietary - Penggunaan komersial memerlukan langganan
+- **Modul Khusus**: Bervariasi menurut lisensi modul (MIT, Proprietary, atau Custom)
 
 ---
 
@@ -891,19 +472,20 @@ We welcome contributions from developers of all skill levels!
 4. **Submit** a pull request
 
 ### 📚 **Resources**
-- 📖 **[Contribution Guide](docs/CONTRIBUTING.md)**
-- 🏗️ **[Module Development](docs/MODULE_GUIDE.md)**
-- 🏛️ **[Architecture Guide](docs/ARCHITECTURE.md)**
+- 📖 **[Setup Guide](docs/SETUP.md)**
+- 🏗️ **[Multi-Version Guide](docs/MULTI_VERSION_GUIDE.md)**
+- 🚢 **[Deployment Guide](docs/DEPLOYMENT.md)**
+- 💰 **[Enterprise Plan](docs/ENTERPRISE_PLAN.md)**
 
 ### 💬 **Community**
 - 🐛 **[Report Issues](https://github.com/fxagro/mytriv-erp/issues)**
 - 💭 **[Discussions](https://github.com/fxagro/mytriv-erp/discussions)**
-- 📧 **Email:** [your-email@mytriv.com](mailto:contact@mytriv.com)
+- 📧 **Email:** [contact@mytriv.com](mailto:contact@mytriv.com)
 
 ---
 
 **⭐ Star us on GitHub • 🐛 Report Issues • 📖 Read Documentation**
 
-**Built with ❤️ for modern businesses | MyTriv ERP - Open Source ERP Solution**
+**Built with ❤️ for modern businesses | MyTriv ERP Cloud - Open-Core ERP Platform**
 
 </div>
