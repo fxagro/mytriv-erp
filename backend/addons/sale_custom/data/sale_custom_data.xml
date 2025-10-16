@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Sample Order Priorities -->
+        <record id="order_priority_low" model="ir.model.data">
+            <field name="name">order_priority_low</field>
+            <field name="model">sale.order</field>
+            <field name="res_id" eval="False"/>
+        </record>
+
+        <record id="order_priority_medium" model="ir.model.data">
+            <field name="name">order_priority_medium</field>
+            <field name="model">sale.order</field>
+            <field name="res_id" eval="False"/>
+        </record>
+
+        <record id="order_priority_high" model="ir.model.data">
+            <field name="name">order_priority_high</field>
+            <field name="model">sale.order</field>
+            <field name="res_id" eval="False"/>
+        </record>
+
+        <!-- Sample Order Sources -->
+        <record id="order_source_web" model="ir.model.data">
+            <field name="name">order_source_web</field>
+            <field name="model">sale.order</field>
+            <field name="res_id" eval="False"/>
+        </record>
+
+        <record id="order_source_phone" model="ir.model.data">
+            <field name="name">order_source_phone</field>
+            <field name="model">sale.order</field>
+            <field name="res_id" eval="False"/>
+        </record>
+
+        <record id="order_source_email" model="ir.model.data">
+            <field name="name">order_source_email</field>
+            <field name="model">sale.order</field>
+            <field name="res_id" eval="False"/>
+        </record>
+
+        <!-- Sample Customer Segments -->
+        <record id="customer_segment_individual" model="ir.model.data">
+            <field name="name">customer_segment_individual</field>
+            <field name="model">res.partner</field>
+            <field name="res_id" eval="False"/>
+        </record>
+
+        <record id="customer_segment_small_business" model="ir.model.data">
+            <field name="name">customer_segment_small_business</field>
+            <field name="model">res.partner</field>
+            <field name="res_id" eval="False"/>
+        </record>
+
+        <record id="customer_segment_enterprise" model="ir.model.data">
+            <field name="name">customer_segment_enterprise</field>
+            <field name="model">res.partner</field>
+            <field name="res_id" eval="False"/>
+        </record>
+
+    </data>
+</odoo>

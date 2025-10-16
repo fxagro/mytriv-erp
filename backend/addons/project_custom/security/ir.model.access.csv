@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_project_custom,project.project.custom,model_project_project,base.group_user,1,1,1,0
+access_task_custom,project.task.custom,model_project_task,base.group_user,1,1,1,0
+access_timesheet_custom,account.analytic.line.custom,model_account_analytic_line,base.group_user,1,1,1,0
+access_project_custom_manager,project.project.custom.manager,model_project_project,project.group_project_manager,1,1,1,1
+access_task_custom_manager,project.task.custom.manager,model_project_task,project.group_project_manager,1,1,1,1
+access_timesheet_custom_manager,account.analytic.line.custom.manager,model_account_analytic_line,project.group_project_manager,1,1,1,1

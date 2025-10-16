@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_department_custom,hr.department.custom,model_hr_department,base.group_user,1,1,1,0
+access_employee_custom,hr.employee.custom,model_hr_employee,base.group_user,1,1,1,0
+access_attendance_custom,hr.attendance.custom,model_hr_attendance,base.group_user,1,1,1,0
+access_department_custom_manager,hr.department.custom.manager,model_hr_department,hr.group_hr_manager,1,1,1,1
+access_employee_custom_manager,hr.employee.custom.manager,model_hr_employee,hr.group_hr_manager,1,1,1,1
+access_attendance_custom_manager,hr.attendance.custom.manager,model_hr_attendance,hr.group_hr_manager,1,1,1,1

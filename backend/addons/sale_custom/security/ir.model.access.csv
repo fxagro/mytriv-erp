@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_order_custom,sale.order.custom,model_sale_order,base.group_user,1,1,1,0
+access_customer_custom,res.partner.custom,model_res_partner,base.group_user,1,1,1,0
+access_sale_order_custom_manager,sale.order.custom.manager,model_sale_order,sales_team.group_sale_manager,1,1,1,1
+access_customer_custom_manager,res.partner.custom.manager,model_res_partner,sales_team.group_sale_manager,1,1,1,1

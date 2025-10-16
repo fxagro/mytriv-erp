@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Sample Project Types -->
+        <record id="project_type_internal" model="ir.model.data">
+            <field name="name">project_type_internal</field>
+            <field name="model">project.project</field>
+            <field name="res_id" eval="False"/>
+        </record>
+
+        <record id="project_type_client" model="ir.model.data">
+            <field name="name">project_type_client</field>
+            <field name="model">project.project</field>
+            <field name="res_id" eval="False"/>
+        </record>
+
+        <record id="project_type_development" model="ir.model.data">
+            <field name="name">project_type_development</field>
+            <field name="model">project.project</field>
+            <field name="res_id" eval="False"/>
+        </record>
+
+        <!-- Sample Task Priorities -->
+        <record id="task_priority_low" model="ir.model.data">
+            <field name="name">task_priority_low</field>
+            <field name="model">project.task</field>
+            <field name="res_id" eval="False"/>
+        </record>
+
+        <record id="task_priority_medium" model="ir.model.data">
+            <field name="name">task_priority_medium</field>
+            <field name="model">project.task</field>
+            <field name="res_id" eval="False"/>
+        </record>
+
+        <record id="task_priority_high" model="ir.model.data">
+            <field name="name">task_priority_high</field>
+            <field name="model">project.task</field>
+            <field name="res_id" eval="False"/>
+        </record>
+
+        <!-- Sample Work Types for Timesheets -->
+        <record id="work_type_billable" model="ir.model.data">
+            <field name="name">work_type_billable</field>
+            <field name="model">account.analytic.line</field>
+            <field name="res_id" eval="False"/>
+        </record>
+
+        <record id="work_type_non_billable" model="ir.model.data">
+            <field name="name">work_type_non_billable</field>
+            <field name="model">account.analytic.line</field>
+            <field name="res_id" eval="False"/>
+        </record>
+
+        <record id="work_type_overtime" model="ir.model.data">
+            <field name="name">work_type_overtime</field>
+            <field name="model">account.analytic.line</field>
+            <field name="res_id" eval="False"/>
+        </record>
+
+    </data>
+</odoo>

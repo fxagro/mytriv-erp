@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  db:
+    image: postgres:15-alpine
+    container_name: mytriv_postgres
+    environment:
+      POSTGRES_DB: mytriv_erp
+      POSTGRES_USER: odoo
+      POSTGRES_PASSWORD: odoo
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - mytriv_net
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U odoo -d mytriv_erp"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Odoo Backend
+  odoo:
+    build: .
+    container_name: mytriv_odoo
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      HOST: db
+      USER: odoo
+      PASSWORD: odoo
+      DATABASE: mytriv_erp
+    volumes:
+      - odoo_data:/var/lib/odoo
+      - ./addons:/mnt/extra-addons
+    ports:
+      - "8069:8069"
+    networks:
+      - mytriv_net
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+
+networks:
+  mytriv_net:
+    driver: bridge
+
+volumes:
+  postgres_data:
+    driver: local
+  odoo_data:
+    driver: local

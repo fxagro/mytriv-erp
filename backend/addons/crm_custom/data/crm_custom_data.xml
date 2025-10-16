@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Sample CRM Stages -->
+        <record id="stage_lead" model="crm.stage">
+            <field name="name">New Lead</field>
+            <field name="sequence">1</field>
+        </record>
+
+        <record id="stage_qualified" model="crm.stage">
+            <field name="name">Qualified</field>
+            <field name="sequence">2</field>
+        </record>
+
+        <record id="stage_proposal" model="crm.stage">
+            <field name="name">Proposal</field>
+            <field name="sequence">3</field>
+        </record>
+
+        <record id="stage_negotiation" model="crm.stage">
+            <field name="name">Negotiation</field>
+            <field name="sequence">4</field>
+        </record>
+
+        <record id="stage_won" model="crm.stage">
+            <field name="name">Won</field>
+            <field name="sequence">5</field>
+            <field name="is_won">True</field>
+        </record>
+
+        <record id="stage_lost" model="crm.stage">
+            <field name="name">Lost</field>
+            <field name="sequence">6</field>
+        </record>
+
+        <!-- Sample Lead Priorities -->
+        <record id="priority_low" model="ir.model.data">
+            <field name="name">crm_lead_priority_low</field>
+            <field name="model">crm.lead</field>
+            <field name="res_id" eval="False"/>
+        </record>
+
+        <!-- Sample Qualification Status Options -->
+        <record id="qualification_new" model="ir.model.data">
+            <field name="name">crm_lead_qualification_new</field>
+            <field name="model">crm.lead</field>
+            <field name="res_id" eval="False"/>
+        </record>
+
+    </data>
+</odoo>

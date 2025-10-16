@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Sample Account Categories -->
+        <record id="account_category_asset" model="ir.model.data">
+            <field name="name">account_category_asset</field>
+            <field name="model">account.account</field>
+            <field name="res_id" eval="False"/>
+        </record>
+
+        <record id="account_category_liability" model="ir.model.data">
+            <field name="name">account_category_liability</field>
+            <field name="model">account.account</field>
+            <field name="res_id" eval="False"/>
+        </record>
+
+        <record id="account_category_income" model="ir.model.data">
+            <field name="name">account_category_income</field>
+            <field name="model">account.account</field>
+            <field name="res_id" eval="False"/>
+        </record>
+
+        <record id="account_category_expense" model="ir.model.data">
+            <field name="name">account_category_expense</field>
+            <field name="model">account.account</field>
+            <field name="res_id" eval="False"/>
+        </record>
+
+        <!-- Sample Journal Entry Types -->
+        <record id="entry_type_manual" model="ir.model.data">
+            <field name="name">entry_type_manual</field>
+            <field name="model">account.move</field>
+            <field name="res_id" eval="False"/>
+        </record>
+
+        <record id="entry_type_automated" model="ir.model.data">
+            <field name="name">entry_type_automated</field>
+            <field name="model">account.move</field>
+            <field name="res_id" eval="False"/>
+        </record>
+
+        <record id="entry_type_recurring" model="ir.model.data">
+            <field name="name">entry_type_recurring</field>
+            <field name="model">account.move</field>
+            <field name="res_id" eval="False"/>
+        </record>
+
+        <!-- Sample Approval Status Options -->
+        <record id="approval_status_draft" model="ir.model.data">
+            <field name="name">approval_status_draft</field>
+            <field name="model">account.move</field>
+            <field name="res_id" eval="False"/>
+        </record>
+
+        <record id="approval_status_pending" model="ir.model.data">
+            <field name="name">approval_status_pending</field>
+            <field name="model">account.move</field>
+            <field name="res_id" eval="False"/>
+        </record>
+
+        <record id="approval_status_approved" model="ir.model.data">
+            <field name="name">approval_status_approved</field>
+            <field name="model">account.move</field>
+            <field name="res_id" eval="False"/>
+        </record>
+
+    </data>
+</odoo>

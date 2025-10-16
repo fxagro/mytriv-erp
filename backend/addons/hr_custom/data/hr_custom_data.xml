@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Sample Department Types -->
+        <record id="dept_type_operational" model="ir.model.data">
+            <field name="name">dept_type_operational</field>
+            <field name="model">hr.department</field>
+            <field name="res_id" eval="False"/>
+        </record>
+
+        <record id="dept_type_support" model="ir.model.data">
+            <field name="name">dept_type_support</field>
+            <field name="model">hr.department</field>
+            <field name="res_id" eval="False"/>
+        </record>
+
+        <record id="dept_type_administrative" model="ir.model.data">
+            <field name="name">dept_type_administrative</field>
+            <field name="model">hr.department</field>
+            <field name="res_id" eval="False"/>
+        </record>
+
+        <!-- Sample Employee Grades -->
+        <record id="employee_grade_junior" model="ir.model.data">
+            <field name="name">employee_grade_junior</field>
+            <field name="model">hr.employee</field>
+            <field name="res_id" eval="False"/>
+        </record>
+
+        <record id="employee_grade_senior" model="ir.model.data">
+            <field name="name">employee_grade_senior</field>
+            <field name="model">hr.employee</field>
+            <field name="res_id" eval="False"/>
+        </record>
+
+        <record id="employee_grade_manager" model="ir.model.data">
+            <field name="name">employee_grade_manager</field>
+            <field name="model">hr.employee</field>
+            <field name="res_id" eval="False"/>
+        </record>
+
+        <!-- Sample Employment Types -->
+        <record id="employment_type_permanent" model="ir.model.data">
+            <field name="name">employment_type_permanent</field>
+            <field name="model">hr.employee</field>
+            <field name="res_id" eval="False"/>
+        </record>
+
+        <record id="employment_type_contract" model="ir.model.data">
+            <field name="name">employment_type_contract</field>
+            <field name="model">hr.employee</field>
+            <field name="res_id" eval="False"/>
+        </record>
+
+        <record id="employment_type_intern" model="ir.model.data">
+            <field name="name">employment_type_intern</field>
+            <field name="model">hr.employee</field>
+            <field name="res_id" eval="False"/>
+        </record>
+
+        <!-- Sample Attendance Types -->
+        <record id="attendance_type_regular" model="ir.model.data">
+            <field name="name">attendance_type_regular</field>
+            <field name="model">hr.attendance</field>
+            <field name="res_id" eval="False"/>
+        </record>
+
+        <record id="attendance_type_overtime" model="ir.model.data">
+            <field name="name">attendance_type_overtime</field>
+            <field name="model">hr.attendance</field>
+            <field name="res_id" eval="False"/>
+        </record>
+
+        <record id="attendance_type_remote" model="ir.model.data">
+            <field name="name">attendance_type_remote</field>
+            <field name="model">hr.attendance</field>
+            <field name="res_id" eval="False"/>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_account_custom,account.account.custom,model_account_account,base.group_user,1,1,1,0
+access_journal_entry_custom,account.move.custom,model_account_move,base.group_user,1,1,1,0
+access_reconciliation_helper,reconciliation.helper,model_account_reconciliation_helper,base.group_user,1,1,1,0
+access_account_custom_manager,account.account.custom.manager,model_account_account,account.group_account_manager,1,1,1,1
+access_journal_entry_custom_manager,account.move.custom.manager,model_account_move,account.group_account_manager,1,1,1,1
+access_reconciliation_helper_manager,reconciliation.helper.manager,model_account_reconciliation_helper,account.group_account_manager,1,1,1,1

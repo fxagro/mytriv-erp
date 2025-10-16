@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_crm_lead_custom,crm.lead.custom,model_crm_lead,base.group_user,1,1,1,0
+access_crm_stage_custom,crm.stage.custom,model_crm_stage,base.group_user,1,1,1,0
+access_crm_funnel_analytics,crm.funnel.analytics,model_crm_funnel_analytics,base.group_user,1,1,1,0
+access_crm_lead_custom_manager,crm.lead.custom.manager,model_crm_lead,sales.group_sale_manager,1,1,1,1
+access_crm_stage_custom_manager,crm.stage.custom.manager,model_crm_stage,sales.group_sale_manager,1,1,1,1
+access_crm_funnel_analytics_manager,crm.funnel.analytics.manager,model_crm_funnel_analytics,sales.group_sale_manager,1,1,1,1
