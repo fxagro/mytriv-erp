@@ -2,70 +2,208 @@
 
 ## Overview
 
-MyTriv ERP provides a comprehensive REST API that allows external applications to interact with Odoo models. The API is built on top of the `base_rest_api` module and provides both generic endpoints for all Odoo models and specific endpoints for common operations.
+MyTriv ERP provides a comprehensive REST API that allows external applications to interact with Odoo models. The API is built on top of the `base_rest_api` module and provides:
+
+- **Generic Model API**: Access any Odoo model via standardized REST endpoints
+- **Specific Module APIs**: Dedicated controllers for HR, CRM, and other modules
+- **Authentication**: Session-based authentication with dedicated auth endpoints
+- **Mock Mode**: Development mode with realistic mock data
+- **Graceful Degradation**: Clear error messages when modules are unavailable
 
 ## Base URL
 
 ```
-http://localhost:8069/api
+http://localhost:8069/api/v1
 ```
 
 ## Authentication
 
-The API uses Odoo's built-in session-based authentication. You need to authenticate with Odoo first to access protected endpoints.
+The API uses Odoo's built-in session-based authentication with dedicated auth endpoints.
 
 ### Login Process
 
-1. **Authenticate with Odoo:**
-   ```bash
-   POST http://localhost:8069/web/login
-   Content-Type: application/json
+#### Option 1: Use Dedicated Auth Endpoints (Recommended)
 
-   {
-     "login": "your-email@example.com",
-     "password": "your-password",
-     "db": "mytriv_erp"
-   }
-   ```
+```bash
+POST http://localhost:8069/api/v1/auth/login
+Content-Type: application/json
 
-2. **Use session cookies** for subsequent API calls
-
-## API Endpoints
-
-### 📋 Employee API (Specific Endpoints)
-
-#### Get All Employees
-```http
-GET /api/v1/employees
+{
+  "login": "your-email@example.com",
+  "password": "your-password",
+  "db": "mytriv_erp"
+}
 ```
 
 **Response:**
 ```json
-[
-  {
+{
+  "user": {
     "id": 1,
     "name": "John Doe",
-    "job_title": "Software Engineer",
-    "work_email": "john@example.com",
-    "work_phone": "+1234567890",
-    "active": true
+    "login": "user@example.com",
+    "partner_id": 1,
+    "company_id": 1,
+    "company_name": "My Company"
   },
-  {
-    "id": 2,
-    "name": "Jane Smith",
-    "job_title": "HR Manager",
-    "work_email": "jane@example.com",
-    "work_phone": "+0987654321",
-    "active": true
-  }
-]
+  "session_id": "session123...",
+  "message": "Login successful",
+  "success": true
+}
 ```
 
-#### Create Employee
-```http
-POST /api/v1/employees
+#### Option 2: Use Odoo Web Login (Legacy)
+
+```bash
+POST http://localhost:8069/web/login
 Content-Type: application/json
+
+{
+  "login": "your-email@example.com",
+  "password": "your-password",
+  "db": "mytriv_erp"
+}
 ```
+
+### Session Management
+
+Use session cookies for subsequent API calls. The API automatically handles session management.
+
+### Get Current User
+
+```bash
+GET http://localhost:8069/api/v1/auth/me
+```
+
+**Response:**
+```json
+{
+  "user": {
+    "id": 1,
+    "name": "John Doe",
+    "login": "user@example.com",
+    "partner_id": 1,
+    "company_id": 1,
+    "company_name": "My Company"
+  },
+  "session_id": "session123...",
+  "authenticated": true
+}
+```
+
+### Logout
+
+```bash
+POST http://localhost:8069/api/v1/auth/logout
+```
+
+## API Endpoints
+
+### 🔐 Authentication Endpoints
+
+#### POST /api/v1/auth/login
+Authenticate user and create session.
+
+**Request Body:**
+```json
+{
+  "login": "user@example.com",
+  "password": "password123",
+  "db": "mytriv_erp"
+}
+```
+
+**Response:**
+```json
+{
+  "user": {
+    "id": 1,
+    "name": "John Doe",
+    "login": "user@example.com",
+    "partner_id": 1,
+    "company_id": 1,
+    "company_name": "My Company"
+  },
+  "session_id": "session123...",
+  "message": "Login successful",
+  "success": true
+}
+```
+
+#### POST /api/v1/auth/logout
+Logout user and destroy session.
+
+**Response:**
+```json
+{
+  "message": "Logout successful",
+  "success": true
+}
+```
+
+#### GET /api/v1/auth/me
+Get current authenticated user information.
+
+**Response:**
+```json
+{
+  "user": {
+    "id": 1,
+    "name": "John Doe",
+    "login": "user@example.com",
+    "partner_id": 1,
+    "company_id": 1,
+    "company_name": "My Company"
+  },
+  "session_id": "session123...",
+  "authenticated": true
+}
+```
+
+### 👥 HR Module Endpoints
+
+#### GET /api/v1/hr/employees
+List HR employees with pagination and search support.
+
+**Query Parameters:**
+- `limit`: Number of records (default: 50, max: 1000)
+- `offset`: Records to skip (default: 0)
+- `search`: Text search across employee name fields
+- `department_id`: Filter by department ID
+- `active`: Filter by active status (true/false)
+
+**Example:**
+```bash
+GET /api/v1/hr/employees?limit=10&search=john&department_id=1
+```
+
+**Response:**
+```json
+{
+  "items": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "job_title": "Software Engineer",
+      "work_email": "john@example.com",
+      "work_phone": "+1234567890",
+      "department_id": [1, "Engineering"],
+      "active": true
+    }
+  ],
+  "total": 100,
+  "limit": 10,
+  "offset": 0,
+  "model": "hr.employee",
+  "endpoint": "hr/employees"
+}
+```
+
+#### GET /api/v1/hr/employees/{id}
+Get specific employee by ID.
+
+#### POST /api/v1/hr/employees
+Create new employee.
 
 **Request Body:**
 ```json
@@ -73,19 +211,171 @@ Content-Type: application/json
   "name": "Alice Johnson",
   "job_title": "Product Manager",
   "work_email": "alice@example.com",
-  "work_phone": "+1112223333",
+  "department_id": 1,
   "active": true
 }
+```
+
+#### PUT /api/v1/hr/employees/{id}
+Update existing employee.
+
+#### DELETE /api/v1/hr/employees/{id}
+Delete employee.
+
+**HR Module Not Available Response:**
+```json
+{
+  "error": "HR module not available. Model \"hr.employee\" not found.",
+  "module": "hr",
+  "available_modules": ["crm", "sale", "account", "project", "stock"],
+  "success": false
+}
+```
+
+### 🎯 CRM Module Endpoints
+
+#### GET /api/v1/crm/leads
+List CRM leads with pagination and filtering.
+
+**Query Parameters:**
+- `limit`: Number of records (default: 50, max: 1000)
+- `offset`: Records to skip (default: 0)
+- `search`: Text search across lead fields
+- `stage_id`: Filter by stage ID
+- `user_id`: Filter by assigned user ID
+- `priority`: Filter by priority (0-3)
+- `type`: Filter by type (lead/opportunity)
+
+**Example:**
+```bash
+GET /api/v1/crm/leads?limit=20&priority=3&type=opportunity
 ```
 
 **Response:**
 ```json
 {
-  "id": 3,
-  "name": "Alice Johnson",
-  "message": "Employee created successfully"
+  "items": [
+    {
+      "id": 1,
+      "name": "Potential Client",
+      "partner_name": "ABC Company",
+      "email_from": "contact@abc.com",
+      "stage_id": [1, "New"],
+      "expected_revenue": 50000,
+      "priority": 3,
+      "type": "opportunity"
+    }
+  ],
+  "total": 50,
+  "limit": 20,
+  "offset": 0,
+  "model": "crm.lead",
+  "endpoint": "crm/leads"
 }
 ```
+
+#### GET /api/v1/crm/leads/{id}
+Get specific lead by ID.
+
+#### POST /api/v1/crm/leads
+Create new lead.
+
+**Request Body:**
+```json
+{
+  "name": "New Business Opportunity",
+  "partner_name": "XYZ Corp",
+  "email_from": "info@xyz.com",
+  "expected_revenue": 75000,
+  "stage_id": 1,
+  "type": "lead"
+}
+```
+
+#### PUT /api/v1/crm/leads/{id}
+Update existing lead.
+
+#### DELETE /api/v1/crm/leads/{id}
+Delete lead.
+
+### 📋 Generic Model Endpoints (All Odoo Models)
+
+#### GET /api/v1/models/{model}
+List records from any Odoo model with advanced features.
+
+**Query Parameters:**
+- `limit`: Number of records (default: 50, max: 1000)
+- `offset`: Records to skip (default: 0)
+- `search`: Text search across common name fields
+- `domain`: JSON domain filter for advanced filtering
+- `fields`: Comma-separated field list
+
+**Examples:**
+
+Get employees with pagination:
+```bash
+GET /api/v1/models/hr.employee?limit=10&offset=0
+```
+
+Search employees:
+```bash
+GET /api/v1/models/hr.employee?search=john&limit=20
+```
+
+Advanced domain filtering:
+```bash
+GET /api/v1/models/hr.employee?domain=[["active","=",true],[["department_id","!=",false]]]&fields=name,email,department_id
+```
+
+**Response:**
+```json
+{
+  "items": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "work_email": "john@example.com",
+      "department_id": [1, "Engineering"]
+    }
+  ],
+  "total": 1000,
+  "limit": 50,
+  "offset": 0,
+  "model": "hr.employee"
+}
+```
+
+#### GET /api/v1/models/{model}/{id}
+Get a specific record by ID.
+
+**Example:**
+```bash
+GET /api/v1/models/hr.employee/1?fields=name,email,department_id
+```
+
+#### POST /api/v1/models/{model}
+Create a new record.
+
+**Request Body:** JSON object with field values
+
+**Example:**
+```bash
+POST /api/v1/models/hr.employee
+Content-Type: application/json
+
+{
+  "name": "Bob Wilson",
+  "work_email": "bob@example.com",
+  "department_id": 1,
+  "active": true
+}
+```
+
+#### PUT /api/v1/models/{model}/{id}
+Update an existing record.
+
+#### DELETE /api/v1/models/{model}/{id}
+Delete a record.
 
 ### 🌐 Generic API (All Odoo Models)
 
@@ -269,52 +559,197 @@ GET /api/models
 }
 ```
 
+## Mock Mode
+
+The API supports a mock mode for development when the Odoo backend is not available.
+
+### Enable Mock Mode
+
+Set the environment variable:
+```bash
+NEXT_PUBLIC_MOCK=1
+```
+
+Or use the mock-specific npm scripts:
+```bash
+npm run dev:mock    # Development with mock mode
+npm run build:mock  # Build with mock mode
+npm run start:mock  # Production with mock mode
+```
+
+### Mock Mode Features
+
+- **Realistic Data**: Generates realistic mock data for all endpoints
+- **Simulated Delays**: Adds realistic response delays (default: 500ms)
+- **Error Simulation**: Optional random errors for testing (configurable)
+- **Graceful Degradation**: Clear indicators when modules are not available
+
+### Mock Mode Responses
+
+When a module is not available in the backend, the API returns:
+```json
+{
+  "error": "HR module not available. Model \"hr.employee\" not found.",
+  "module": "hr",
+  "available_modules": ["crm", "sale", "account", "project", "stock"],
+  "success": false
+}
+```
+
 ## Frontend Integration
 
-### TypeScript API Client
+### Configuration
 
 ```typescript
-// lib/api.ts
-import axios from 'axios';
+// lib/config.ts
+import { config } from '@/lib/config'
 
-const apiClient = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8069/api',
-  withCredentials: true,
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
-
-// Request interceptor for logging
-apiClient.interceptors.request.use(
-  (config) => {
-    console.log('API Request:', config.method?.toUpperCase(), config.url);
-    return config;
-  },
-  (error) => {
-    console.error('API Request Error:', error);
-    return Promise.reject(error);
+const apiConfig = {
+  baseUrl: config.api.baseUrl,
+  version: config.api.version,
+  mock: {
+    enabled: config.mock.enabled,
+    delay: config.mock.delay,
   }
-);
+}
+```
 
-// Response interceptor for error handling
-apiClient.interceptors.response.use(
-  (response) => {
-    console.log('API Response:', response.status, response.config.url);
-    return response;
-  },
-  (error) => {
-    console.error('API Response Error:', error.response?.status, error.response?.data);
-    if (error.response?.status === 401) {
-      // Handle unauthorized access
-      console.warn('Unauthorized access - redirecting to login');
-      window.location.href = '/login';
-    }
-    return Promise.reject(error);
-  }
-);
+### API Client
 
-export default apiClient;
+```typescript
+// services/apiClient.ts
+import { apiClient } from '@/services/apiClient'
+
+// Login
+const response = await apiClient.login({
+  login: 'user@example.com',
+  password: 'password123'
+})
+
+// List employees
+const employeesResponse = await apiClient.listEmployees({
+  limit: 10,
+  search: 'john'
+})
+
+// Create employee
+const createResponse = await apiClient.createEmployee({
+  name: 'Jane Smith',
+  email: 'jane@example.com',
+  department_id: 1
+})
+```
+
+### Generic Model Service
+
+```typescript
+// services/genericModelService.ts
+import { genericModelService } from '@/services/genericModelService'
+
+// List any model
+const response = await genericModelService.list('hr.employee', {
+  limit: 20,
+  search: 'john'
+})
+
+// Get specific record
+const employee = await genericModelService.get('hr.employee', 1)
+
+// Create record
+const newEmployee = await genericModelService.create('hr.employee', {
+  name: 'Bob Wilson',
+  email: 'bob@example.com'
+})
+```
+
+### HR Service
+
+```typescript
+// services/hrService.ts
+import { hrService } from '@/services/hrService'
+
+// List employees with HR-specific filters
+const employees = await hrService.listEmployees({
+  departmentId: 1,
+  active: true,
+  limit: 50
+})
+
+// Get employee statistics
+const stats = await hrService.getEmployeeStats()
+
+// Get employee hierarchy
+const hierarchy = await hrService.getEmployeeHierarchy()
+```
+
+### CRM Service
+
+```typescript
+// services/crmService.ts
+import { crmService } from '@/services/crmService'
+
+// List leads with CRM-specific filters
+const leads = await crmService.listLeads({
+  stageId: 1,
+  priority: 3,
+  type: 'opportunity'
+})
+
+// Get lead statistics
+const stats = await crmService.getLeadStats()
+
+// Get leads pipeline
+const pipeline = await crmService.getLeadsPipeline()
+```
+
+### UI Components
+
+```typescript
+// components/ui/card-stat.tsx
+import { CardStat, CardStatGrid } from '@/components/ui/card-stat'
+
+<CardStatGrid columns={4}>
+  <CardStat
+    title="Total Employees"
+    value={employeeStats?.total || 0}
+    subtitle={`${employeeStats?.active || 0} active`}
+    trend={{
+      value: 5.2,
+      label: 'vs last month',
+      direction: 'up'
+    }}
+  />
+</CardStatGrid>
+
+// components/ui/table.tsx
+import { Table } from '@/components/ui/table'
+
+<Table
+  data={employees}
+  columns={[
+    { key: 'name', label: 'Name', sortable: true },
+    { key: 'email', label: 'Email' },
+    { key: 'department_id', label: 'Department' }
+  ]}
+  loading={loading}
+  pagination={{
+    total: 100,
+    current: 1,
+    pageSize: 10,
+    onChange: (page, pageSize) => setPage(page)
+  }}
+  actions={[
+    { label: 'Edit', onClick: handleEdit },
+    { label: 'Delete', onClick: handleDelete, variant: 'danger' }
+  ]}
+/>
+
+// components/ui/spinner.tsx
+import { Spinner, PageSpinner, InlineSpinner } from '@/components/ui/spinner'
+
+<Spinner size="lg" />
+<PageSpinner message="Loading..." />
+<InlineSpinner message="Saving..." />
 ```
 
 ### Employee Service

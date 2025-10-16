@@ -1,7 +1,7 @@
 /**
- * Employees Page
+ * CRM Leads Page
  *
- * HR employee management interface.
+ * Customer relationship management leads interface.
  */
 
 'use client'
@@ -9,32 +9,32 @@
 import React, { useState, useEffect } from 'react'
 import { Table } from '@/components/ui/table'
 import { Spinner } from '@/components/ui/spinner'
-import { hrService } from '@/services/hrService'
+import { crmService } from '@/services/crmService'
 import { config } from '@/lib/config'
-import type { Employee, TableColumn } from '@/lib/types'
+import type { Lead, TableColumn } from '@/lib/types'
 
-export default function EmployeesPage() {
-  const [employees, setEmployees] = useState<Employee[]>([])
+export default function LeadsPage() {
+  const [leads, setLeads] = useState<Lead[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [search, setSearch] = useState('')
 
   useEffect(() => {
-    loadEmployees()
+    loadLeads()
   }, [])
 
-  const loadEmployees = async () => {
+  const loadLeads = async () => {
     setLoading(true)
     try {
-      const response = await hrService.listEmployees({
+      const response = await crmService.listLeads({
         limit: 100,
         search: search || undefined,
       })
 
       if (response.success && response.data) {
-        setEmployees(response.data.items)
+        setLeads(response.data.items)
       } else {
-        setError(response.error || 'Failed to load employees')
+        setError(response.error || 'Failed to load leads')
       }
     } catch (err) {
       setError('An unexpected error occurred')
@@ -43,54 +43,67 @@ export default function EmployeesPage() {
     }
   }
 
-  const columns: TableColumn<Employee>[] = [
+  const columns: TableColumn<Lead>[] = [
     {
       key: 'name',
       label: 'Name',
       sortable: true,
     },
     {
-      key: 'job_title',
-      label: 'Job Title',
+      key: 'partner_name',
+      label: 'Company',
     },
     {
-      key: 'work_email',
+      key: 'email_from',
       label: 'Email',
     },
     {
-      key: 'work_phone',
+      key: 'phone',
       label: 'Phone',
     },
     {
-      key: 'department_id',
-      label: 'Department',
+      key: 'stage_id',
+      label: 'Stage',
       render: (value) => Array.isArray(value) ? value[1] : value,
     },
     {
-      key: 'active',
-      label: 'Status',
-      render: (value) => value ? 'Active' : 'Inactive',
+      key: 'expected_revenue',
+      label: 'Expected Revenue',
+      render: (value) => value ? `$${value.toLocaleString()}` : '-',
+    },
+    {
+      key: 'priority',
+      label: 'Priority',
+      render: (value) => {
+        const priorities = { 0: 'Very Low', 1: 'Low', 2: 'Medium', 3: 'High' }
+        return priorities[value as keyof typeof priorities] || 'Unknown'
+      },
+    },
+    {
+      key: 'type',
+      label: 'Type',
+      render: (value) => value === 'opportunity' ? 'Opportunity' : 'Lead',
     },
   ]
 
   return (
     <div className="p-6">
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-gray-900">Employees</h1>
-        <p className="text-gray-600">Manage HR employees</p>
+        <h1 className="text-2xl font-bold text-gray-900">CRM Leads</h1>
+        <p className="text-gray-600">Manage customer leads and opportunities</p>
       </div>
 
       {/* Search and Actions */}
       <div className="mb-6 flex justify-between items-center">
         <input
           type="text"
-          placeholder="Search employees..."
+          placeholder="Search leads..."
           className="px-4 py-2 border border-gray-300 rounded-md"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        <button className="px-4 py-2 bg-blue-600 text-white rounded-md">
-          Add Employee
+        <button className="px-4 py-2 bg-green-600 text-white rounded-md">
+          Add Lead
         </button>
       </div>
 
@@ -100,19 +113,23 @@ export default function EmployeesPage() {
         </div>
       )}
 
-      {/* Employees Table */}
+      {/* Leads Table */}
       <Table
-        data={employees}
+        data={leads}
         columns={columns}
         loading={loading}
         actions={[
           {
             label: 'Edit',
-            onClick: (employee) => console.log('Edit', employee),
+            onClick: (lead) => console.log('Edit', lead),
+          },
+          {
+            label: 'Convert',
+            onClick: (lead) => console.log('Convert', lead),
           },
           {
             label: 'Delete',
-            onClick: (employee) => console.log('Delete', employee),
+            onClick: (lead) => console.log('Delete', lead),
             variant: 'danger',
           },
         ]}
@@ -121,7 +138,7 @@ export default function EmployeesPage() {
       {config.mock.enabled && (
         <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-md">
           <p className="text-blue-700">
-            <strong>Mock Mode:</strong> Employee data is simulated.
+            <strong>Mock Mode:</strong> Lead data is simulated.
           </p>
         </div>
       )}

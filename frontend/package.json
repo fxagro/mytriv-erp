@@ -4,9 +4,16 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
+    "dev:mock": "NEXT_PUBLIC_MOCK=1 next dev --turbopack",
     "build": "next build --turbopack",
+    "build:mock": "NEXT_PUBLIC_MOCK=1 next build --turbopack",
     "start": "next start",
-    "lint": "eslint"
+    "start:mock": "NEXT_PUBLIC_MOCK=1 next start",
+    "lint": "eslint",
+    "type-check": "tsc --noEmit",
+    "test": "echo \"No tests yet\" && exit 0",
+    "docker:build": "docker build -t mytriv-frontend .",
+    "docker:run": "docker run -p 3000:3000 mytriv-frontend"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.3",

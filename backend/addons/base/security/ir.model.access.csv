@@ -1,0 +1,7 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_res_users","res.users","model_res_users","base.group_user",1,1,1,1
+"access_res_partner","res.partner","model_res_partner","base.group_user",1,1,1,1
+"access_res_company","res.company","model_res_company","base.group_user",1,1,1,1
+"access_ir_model","ir.model","model_ir_model","base.group_system",1,1,1,1
+"access_ir_attachment","ir.attachment","model_ir_attachment","base.group_user",1,1,1,0
+"access_ir_config_parameter","ir.config_parameter","model_ir_config_parameter","base.group_system",1,1,1,1

@@ -1,0 +1,10 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_sale_order","sale.order","model_sale_order","sale.group_sale_user",1,1,1,0
+"access_sale_order_line","sale.order.line","model_sale_order_line","sale.group_sale_user",1,1,1,0
+"access_product_product","product.product","model_product_product","sale.group_sale_user",1,1,1,0
+"access_product_category","product.category","model_product_category","sale.group_sale_manager",1,1,1,1
+"access_stock_picking","stock.picking","model_stock_picking","sale.group_sale_user",1,1,1,0
+"access_stock_move","stock.move","model_stock_move","sale.group_sale_user",1,1,1,0
+"access_account_move","account.move","model_account_move","sale.group_sale_user",1,1,1,0
+"access_account_move_line","account.move.line","model_account_move_line","sale.group_sale_user",1,1,1,0
+"access_res_partner","res.partner","model_res_partner","sale.group_sale_user",1,1,1,0

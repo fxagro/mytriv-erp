@@ -1,0 +1,9 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_crm_lead","crm.lead","model_crm_lead","crm.group_crm_user",1,1,1,0
+"access_crm_opportunity","crm.opportunity","model_crm_opportunity","crm.group_crm_user",1,1,1,0
+"access_crm_team","crm.team","model_crm_team","crm.group_crm_manager",1,1,1,1
+"access_crm_stage","crm.stage","model_crm_stage","crm.group_crm_manager",1,1,1,1
+"access_crm_activity","crm.activity","model_crm_activity","crm.group_crm_user",1,1,1,0
+"access_crm_meeting","crm.meeting","model_crm_meeting","crm.group_crm_user",1,1,1,0
+"access_crm_phonecall","crm.phonecall","model_crm_phonecall","crm.group_crm_user",1,1,1,0
+"access_crm_campaign","crm.campaign","model_crm_campaign","crm.group_crm_manager",1,1,1,1

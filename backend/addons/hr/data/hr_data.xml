@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- HR data for MyTriv ERP -->
+
+    <!-- Default departments -->
+    <record id="dept_administration" model="hr.department">
+        <field name="name">Administration</field>
+        <field name="company_id" ref="base.main_company"/>
+    </record>
+
+    <record id="dept_hr" model="hr.department">
+        <field name="name">Human Resources</field>
+        <field name="company_id" ref="base.main_company"/>
+    </record>
+
+    <record id="dept_it" model="hr.department">
+        <field name="name">Information Technology</field>
+        <field name="company_id" ref="base.main_company"/>
+    </record>
+
+    <record id="dept_finance" model="hr.department">
+        <field name="name">Finance</field>
+        <field name="company_id" ref="base.main_company"/>
+    </record>
+
+    <record id="dept_sales" model="hr.department">
+        <field name="name">Sales</field>
+        <field name="company_id" ref="base.main_company"/>
+    </record>
+
+    <!-- Job positions -->
+    <record id="job_ceo" model="hr.job">
+        <field name="name">Chief Executive Officer</field>
+        <field name="department_id" ref="dept_administration"/>
+        <field name="company_id" ref="base.main_company"/>
+    </record>
+
+    <record id="job_hr_manager" model="hr.job">
+        <field name="name">HR Manager</field>
+        <field name="department_id" ref="dept_hr"/>
+        <field name="company_id" ref="base.main_company"/>
+    </record>
+
+    <record id="job_it_manager" model="hr.job">
+        <field name="name">IT Manager</field>
+        <field name="department_id" ref="dept_it"/>
+        <field name="company_id" ref="base.main_company"/>
+    </record>
+
+    <record id="job_developer" model="hr.job">
+        <field name="name">Software Developer</field>
+        <field name="department_id" ref="dept_it"/>
+        <field name="company_id" ref="base.main_company"/>
+    </record>
+
+    <!-- Leave types -->
+    <record id="leave_annual" model="hr.leave.type">
+        <field name="name">Annual Leave</field>
+        <field name="code">ANNUAL</field>
+        <field name="max_days">12</field>
+    </record>
+
+    <record id="leave_sick" model="hr.leave.type">
+        <field name="name">Sick Leave</field>
+        <field name="code">SICK</field>
+        <field name="max_days">10</field>
+    </record>
+
+    <record id="leave_personal" model="hr.leave.type">
+        <field name="name">Personal Leave</field>
+        <field name="code">PERSONAL</field>
+        <field name="max_days">5</field>
+    </record>
+
+    <!-- Recruitment stages -->
+    <record id="stage_new" model="hr.recruitment.stage">
+        <field name="name">New</field>
+        <field name="sequence">1</field>
+        <field name="is_default">True</field>
+    </record>
+
+    <record id="stage_screening" model="hr.recruitment.stage">
+        <field name="name">Screening</field>
+        <field name="sequence">2</field>
+    </record>
+
+    <record id="stage_interview" model="hr.recruitment.stage">
+        <field name="name">Interview</field>
+        <field name="sequence">3</field>
+    </record>
+
+    <record id="stage_hired" model="hr.recruitment.stage">
+        <field name="name">Hired</field>
+        <field name="sequence">4</field>
+    </record>
+
+    <record id="stage_rejected" model="hr.recruitment.stage">
+        <field name="name">Rejected</field>
+        <field name="sequence">5</field>
+    </record>
+
+    <!-- Recruitment sources -->
+    <record id="source_website" model="hr.recruitment.source">
+        <field name="name">Company Website</field>
+        <field name="source_type">website</field>
+    </record>
+
+    <record id="source_referral" model="hr.recruitment.source">
+        <field name="name">Employee Referral</field>
+        <field name="source_type">referral</field>
+    </record>
+
+    <record id="source_linkedin" model="hr.recruitment.source">
+        <field name="name">LinkedIn</field>
+        <field name="source_type">social_media</field>
+    </record>
+
+    <!-- Skills -->
+    <record id="skill_python" model="hr.skill">
+        <field name="name">Python Programming</field>
+        <field name="skill_type">technical</field>
+    </record>
+
+    <record id="skill_leadership" model="hr.skill">
+        <field name="name">Leadership</field>
+        <field name="skill_type">soft</field>
+    </record>
+
+    <record id="skill_english" model="hr.skill">
+        <field name="name">English</field>
+        <field name="skill_type">language</field>
+    </record>
+
+</odoo>

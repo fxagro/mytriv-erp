@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- CRM data for MyTriv ERP -->
+
+    <!-- Default sales team -->
+    <record id="team_sales" model="crm.team">
+        <field name="name">Sales Team</field>
+        <field name="company_id" ref="base.main_company"/>
+    </record>
+
+    <!-- Sales stages -->
+    <record id="stage_new" model="crm.stage">
+        <field name="name">New</field>
+        <field name="sequence">1</field>
+        <field name="is_default">True</field>
+        <field name="probability">10</field>
+        <field name="company_id" ref="base.main_company"/>
+    </record>
+
+    <record id="stage_qualified" model="crm.stage">
+        <field name="name">Qualified</field>
+        <field name="sequence">2</field>
+        <field name="probability">30</field>
+        <field name="company_id" ref="base.main_company"/>
+    </record>
+
+    <record id="stage_proposal" model="crm.stage">
+        <field name="name">Proposal</field>
+        <field name="sequence">3</field>
+        <field name="probability">50</field>
+        <field name="company_id" ref="base.main_company"/>
+    </record>
+
+    <record id="stage_negotiation" model="crm.stage">
+        <field name="name">Negotiation</field>
+        <field name="sequence">4</field>
+        <field name="probability">80</field>
+        <field name="company_id" ref="base.main_company"/>
+    </record>
+
+    <record id="stage_won" model="crm.stage">
+        <field name="name">Won</field>
+        <field name="sequence">5</field>
+        <field name="is_won">True</field>
+        <field name="probability">100</field>
+        <field name="company_id" ref="base.main_company"/>
+    </record>
+
+    <record id="stage_lost" model="crm.stage">
+        <field name="name">Lost</field>
+        <field name="sequence">6</field>
+        <field name="probability">0</field>
+        <field name="company_id" ref="base.main_company"/>
+    </record>
+
+    <!-- Lead sources -->
+    <record id="source_website" model="crm.lead.source">
+        <field name="name">Website</field>
+    </record>
+
+    <record id="source_referral" model="crm.lead.source">
+        <field name="name">Referral</field>
+    </record>
+
+    <record id="source_social_media" model="crm.lead.source">
+        <field name="name">Social Media</field>
+    </record>
+
+    <record id="source_advertising" model="crm.lead.source">
+        <field name="name">Advertising</field>
+    </record>
+
+    <!-- Lost reasons -->
+    <record id="lost_reason_price" model="crm.lost.reason">
+        <field name="name">Price Too High</field>
+    </record>
+
+    <record id="lost_reason_competitor" model="crm.lost.reason">
+        <field name="name">Competitor</field>
+    </record>
+
+    <record id="lost_reason_no_budget" model="crm.lost.reason">
+        <field name="name">No Budget</field>
+    </record>
+
+    <record id="lost_reason_no_need" model="crm.lost.reason">
+        <field name="name">No Need</field>
+    </record>
+
+</odoo>
