@@ -59,3 +59,4 @@ docker-compose.override.yml
 *.xlsx
 *.mp4
 *.rar
+.env
