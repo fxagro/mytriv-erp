@@ -400,9 +400,9 @@ MyTriv ERP Cloud implements a comprehensive **open-core monetization strategy** 
 
 | Tier | Monthly Price | Features | Target Market |
 |------|---------------|----------|---------------|
-| **Starter** | $29/user | Basic ERP, 1 Odoo version | Small businesses |
-| **Professional** | $79/user | Multi-version, API access | Growing companies |
-| **Enterprise** | $149/user | Custom modules, priority support | Large enterprises |
+| **Starter** | $x/user | Basic ERP, 1 Odoo version | Small businesses |
+| **Professional** | $xx/user | Multi-version, API access | Growing companies |
+| **Enterprise** | $xxx/user | Custom modules, priority support | Large enterprises |
 | **Custom** | Quote-based | Full customization, on-premise | Enterprise clients |
 
 #### Revenue Streams
@@ -425,9 +425,9 @@ MyTriv ERP Cloud menerapkan strategi monetisasi **open-core** yang komprehensif 
 
 | Tingkat | Harga Bulanan | Fitur | Pasar Sasaran |
 |---------|---------------|-------|---------------|
-| **Starter** | $29/user | ERP dasar, 1 versi Odoo | Bisnis kecil |
-| **Professional** | $79/user | Multi-versi, akses API | Perusahaan berkembang |
-| **Enterprise** | $149/user | Modul khusus, dukungan prioritas | Perusahaan besar |
+| **Starter** | $x/user | ERP dasar, 1 versi Odoo | Bisnis kecil |
+| **Professional** | $xx/user | Multi-versi, akses API | Perusahaan berkembang |
+| **Enterprise** | $xxx/user | Modul khusus, dukungan prioritas | Perusahaan besar |
 | **Custom** | Berbasis kuota | Kustomisasi penuh, on-premise | Klien enterprise |
 
 #### Aliran Pendapatan
