@@ -1,0 +1,61 @@
+# ========================
+# System files
+# ========================
+$RECYCLE.BIN/
+System Volume Information/
+*.log
+*.tmp
+*.bak
+*.swp
+*.swo
+Thumbs.db
+
+# ========================
+# Python / Odoo
+# ========================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+*.egg-info/
+*.env
+*.venv/
+.odoo_version
+*.db
+*.tar.gz
+*.zip
+
+# ========================
+# Node / Next.js
+# ========================
+node_modules/
+.next/
+out/
+dist/
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# ========================
+# Docker
+# ========================
+docker-compose.override.yml
+*.dockerignore
+
+# ========================
+# IDEs
+# ========================
+.vscode/
+.idea/
+*.code-workspace
+
+# ========================
+# Misc
+# ========================
+.DS_Store
+*.pdf
+*.xlsx
+*.mp4
+*.rar
