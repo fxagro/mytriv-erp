@@ -1,7 +1,7 @@
 # 🧩 MyTriv ERP Cloud
 
 <p align="center">
-  <img src="docs/assets/logo-placeholder.png" alt="MyTriv ERP Cloud Logo" width="200" height="80">
+  <img src="https://raw.githubusercontent.com/fxagro/mytriv-erp/main/logo%20(1).png" alt="MyTriv ERP Cloud Logo" width="200" height="80">
 </p>
 
 <p align="center">
