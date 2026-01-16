@@ -1,3 +1,68 @@
+📦 MyTriv ERP (Archived)
+
+Status: Archived / Reference Project
+
+This repository represents an earlier system-level exploration into business process automation and ERP architecture.
+It is no longer an active product, but serves as a reference project demonstrating experience in building complex, system-grade applications.
+
+🧠 Project Context
+
+The MyTriv ERP project was developed to explore and understand:
+
+Business workflow modeling
+
+Role-based access control (RBAC)
+
+Data consistency across complex entities
+
+Backend system architecture for business applications
+
+Many of the architectural lessons from this project later influenced the design decisions behind the MyTriv ecosystem, particularly in areas such as system modularity, scalability, and long-term maintainability.
+
+🔧 What I Learned Building This
+
+Designing and implementing multi-role business workflows
+
+Managing complex relational data structures
+
+Structuring backend services for long-term scalability
+
+Translating real-world business processes into software systems
+
+This project reflects a hands-on, system-oriented approach rather than a tutorial or proof-of-concept.
+
+📁 Project Scope
+
+This repository is shared publicly for learning and reference purposes only.
+
+❌ Not an active product
+
+❌ Not under active development
+
+❌ Not intended for production use
+
+🚀 Current Work
+
+I am currently building the MyTriv AI Ecosystem, an AI-native platform focused on education, agentic systems, and cloud-based learning infrastructure.
+
+🌐 https://mytriv.com
+
+💬 https://chat.mytriv.com
+
+Selected system components and architectural patterns from current projects are being prepared for open-source release.
+
+📜 License
+
+This project is provided for educational and reference use.
+Please refer to the LICENSE file for detailed licensing information.
+
+👤 Author
+
+Agus Rochman
+Founder – MyTriv
+Building AI-native learning platforms & agentic systems
+
+
 # 🧩 MyTriv ERP Cloud
 
 <p align="center">
